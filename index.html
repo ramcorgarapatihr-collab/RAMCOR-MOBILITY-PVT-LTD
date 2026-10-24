@@ -1,0 +1,1297 @@
+<!DOCTYPE html>
+<html lang="te">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>రామ్‌కార్ మొబిలిటీ — ఐచర్ ప్రో X సేల్స్ ఇంటర్వ్యూ</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+<style>
+  :root{
+    --ink:#1c1b17;
+    --ink-soft:#5b5849;
+    --paper:#faf7f0;
+    --paper-raised:#ffffff;
+    --line:#ddd6c4;
+    --rust:#c8202f;
+    --rust-deep:#9a1722;
+    --olive:#16356b;
+    --olive-deep:#102a57;
+    --mustard:#c98a1f;
+    --danger:#a3342b;
+    --danger-bg:#f6e8e4;
+    --success:#3c6b3f;
+    --success-bg:#e9f0e4;
+    --radius:10px;
+    --shadow:0 1px 2px rgba(28,27,23,0.06), 0 4px 16px rgba(28,27,23,0.05);
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+    line-height:1.5;
+    min-height:100vh;
+  }
+  .wrap{max-width:720px;margin:0 auto;padding:24px 20px 80px;}
+  .brandbar{
+    display:flex;align-items:center;justify-content:space-between;
+    padding:14px 0 20px;border-bottom:2px solid var(--ink);margin-bottom:28px;
+  }
+  .brandbar .mark{display:flex;flex-direction:column;align-items:flex-start;gap:6px;}
+  .brandbar .logo{height:46px;width:auto;mix-blend-mode:multiply;display:block;}
+  .brandbar .mark .dot{width:10px;height:10px;background:var(--rust);border-radius:2px;transform:rotate(45deg);}
+  .brandbar h1{font-size:15px;font-weight:700;letter-spacing:0.02em;margin:0;text-transform:uppercase;}
+  .brandbar .tag{font-size:11px;color:var(--ink-soft);letter-spacing:0.06em;text-transform:uppercase;}
+  .brandbar .owner-link{font-size:11px;color:var(--ink-soft);text-decoration:none;letter-spacing:0.03em;cursor:pointer;border:none;background:none;font-family:inherit;}
+  .brandbar .owner-link:hover{color:var(--rust);}
+
+  .card{
+    background:var(--paper-raised);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    padding:28px 26px;
+    box-shadow:var(--shadow);
+  }
+  .eyebrow{
+    font-size:11px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;
+    color:var(--rust-deep);margin:0 0 8px;
+  }
+  h2{font-size:22px;font-weight:700;margin:0 0 6px;letter-spacing:-0.01em;}
+  .sub{color:var(--ink-soft);font-size:14px;margin:0 0 22px;}
+
+  label{display:block;font-size:12px;font-weight:600;color:var(--ink-soft);text-transform:uppercase;letter-spacing:0.04em;margin:18px 0 6px;}
+  label:first-of-type{margin-top:0;}
+  input[type=text], input[type=tel], select, textarea{
+    width:100%;padding:11px 13px;border:1px solid var(--line);border-radius:7px;
+    font-size:15px;font-family:inherit;background:var(--paper);color:var(--ink);
+  }
+  input:focus, select:focus, textarea:focus{
+    outline:none;border-color:var(--rust);box-shadow:0 0 0 3px rgba(200,32,47,0.14);
+  }
+  textarea{resize:vertical;min-height:90px;}
+  .row2{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+  @media(max-width:540px){.row2{grid-template-columns:1fr;}}
+
+  .photo-zone{
+    border:1.5px dashed var(--line);border-radius:8px;padding:18px;text-align:center;
+    cursor:pointer;background:var(--paper);transition:border-color .15s;
+  }
+  .photo-zone:hover{border-color:var(--rust);}
+  .photo-zone img{max-width:120px;max-height:120px;border-radius:8px;object-fit:cover;}
+  .photo-zone .hint{font-size:13px;color:var(--ink-soft);margin-top:6px;}
+
+  .btn{
+    display:inline-flex;align-items:center;justify-content:center;gap:8px;
+    padding:12px 22px;border-radius:7px;border:none;font-size:15px;font-weight:600;
+    cursor:pointer;font-family:inherit;transition:transform .08s, opacity .15s;
+  }
+  .btn:active{transform:scale(0.98);}
+  .btn-primary{background:var(--rust);color:#fff;}
+  .btn-primary:hover{background:var(--rust-deep);}
+  .btn-primary:disabled{opacity:0.45;cursor:not-allowed;}
+  .btn-ghost{background:transparent;color:var(--ink);border:1px solid var(--line);}
+  .btn-ghost:hover{border-color:var(--ink);}
+  .btn-block{width:100%;margin-top:24px;padding:14px;font-size:16px;}
+
+  .progress-rail{display:flex;gap:5px;margin-bottom:22px;}
+  .progress-seg{flex:1;height:4px;background:var(--line);border-radius:2px;overflow:hidden;}
+  .progress-seg.done{background:var(--olive);}
+  .progress-seg.active{background:var(--mustard);}
+
+  .qcat{
+    display:inline-block;font-size:10.5px;font-weight:700;letter-spacing:0.06em;
+    text-transform:uppercase;padding:4px 9px;border-radius:5px;margin-bottom:12px;
+  }
+  .qcat.logic{background:#e8e3f5;color:#4d3c8a;}
+  .qcat.product{background:#e3e9f4;color:var(--olive-deep);}
+  .qcat.sales{background:#f6e8da;color:var(--rust-deep);}
+  .qcat.situational{background:#f5e9d8;color:#8a5a14;}
+  .qcat.communication{background:#e3eef2;color:#2c5a6b;}
+
+  .qtext{font-size:18px;font-weight:600;line-height:1.45;margin:0 0 18px;}
+
+  .loading-row{display:flex;align-items:center;gap:10px;color:var(--ink-soft);font-size:14px;padding:18px 0;}
+  .spinner{
+    width:16px;height:16px;border:2px solid var(--line);border-top-color:var(--rust);
+    border-radius:50%;animation:spin .7s linear infinite;flex-shrink:0;
+  }
+  @keyframes spin{to{transform:rotate(360deg);}}
+
+  .center-pad{text-align:center;padding:50px 20px;}
+  .center-pad .spinner{margin:0 auto 16px;width:24px;height:24px;border-width:3px;}
+
+  .result-banner{
+    border-radius:var(--radius);padding:30px 26px;text-align:center;margin-bottom:20px;
+  }
+  .result-banner.qualify{background:var(--success-bg);border:1px solid #b7d2ad;}
+  .result-banner.disqualify{background:var(--danger-bg);border:1px solid #ddb3ac;}
+  .result-banner .verdict{font-size:26px;font-weight:700;margin:6px 0;}
+  .result-banner.qualify .verdict{color:var(--success);}
+  .result-banner.disqualify .verdict{color:var(--danger);}
+  .result-banner .score-big{font-size:42px;font-weight:700;margin:4px 0;}
+
+  .footer-note{text-align:center;font-size:12px;color:var(--ink-soft);margin-top:24px;}
+
+  /* Owner dashboard */
+  .pin-box{max-width:340px;margin:60px auto;}
+  .cand-row{
+    display:flex;align-items:center;gap:14px;padding:14px 16px;border:1px solid var(--line);
+    border-radius:8px;background:var(--paper-raised);margin-bottom:10px;cursor:pointer;
+  }
+  .cand-row:hover{border-color:var(--rust);}
+  .cand-row img.avatar{width:44px;height:44px;border-radius:50%;object-fit:cover;background:var(--line);flex-shrink:0;}
+  .cand-row .avatar-fallback{
+    width:44px;height:44px;border-radius:50%;background:var(--olive);color:#fff;
+    display:flex;align-items:center;justify-content:center;font-weight:700;font-size:15px;flex-shrink:0;
+  }
+  .cand-row .meta{flex:1;min-width:0;}
+  .cand-row .meta .name{font-weight:600;font-size:15px;}
+  .cand-row .meta .sub{font-size:12.5px;color:var(--ink-soft);margin:0;}
+  .pill{font-size:11px;font-weight:700;letter-spacing:0.03em;padding:4px 10px;border-radius:20px;text-transform:uppercase;flex-shrink:0;}
+  .pill.qualify{background:var(--success-bg);color:var(--success);}
+  .pill.disqualify{background:var(--danger-bg);color:var(--danger);}
+  .pill.pending{background:#eee9da;color:var(--ink-soft);}
+
+  .topbar-owner{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;flex-wrap:wrap;gap:10px;}
+  .qa-block{border:1px solid var(--line);border-radius:8px;padding:16px 18px;margin-bottom:12px;background:var(--paper-raised);}
+  .qa-block .q{font-weight:600;font-size:14.5px;margin:0 0 8px;}
+  .qa-block .a{font-size:14px;color:var(--ink-soft);margin:0 0 10px;white-space:pre-wrap;}
+  .qa-block .grade-row{display:flex;align-items:center;gap:10px;font-size:13px;border-top:1px solid var(--line);padding-top:10px;}
+  .qa-block .grade-score{font-weight:700;}
+  .grade-good{color:var(--success);}
+  .grade-mid{color:var(--mustard);}
+  .grade-low{color:var(--danger);}
+
+  .cat-bars{display:grid;gap:10px;margin:18px 0;}
+  .cat-bar-row{display:grid;grid-template-columns:140px 1fr 40px;align-items:center;gap:10px;font-size:13px;}
+  .cat-bar-track{height:8px;background:var(--line);border-radius:4px;overflow:hidden;}
+  .cat-bar-fill{height:100%;border-radius:4px;}
+
+  .empty-state{text-align:center;padding:60px 20px;color:var(--ink-soft);}
+  .err-box{background:var(--danger-bg);color:var(--danger);border-radius:8px;padding:12px 14px;font-size:13.5px;margin:14px 0;}
+
+  a.linklike{color:var(--rust);text-decoration:none;cursor:pointer;font-weight:600;font-size:13px;}
+  a.linklike:hover{text-decoration:underline;}
+  .cand-row{flex-wrap:wrap;}
+  .qa-meta{font-size:12px;color:var(--ink-soft);background:var(--paper);border-radius:6px;padding:6px 9px;margin:0 0 10px;}
+  .qa-meta.warn{background:#f5e9d8;color:#8a5a14;}
+  .qa-meta.bad{background:var(--danger-bg);color:var(--danger);}
+  .qa-ideal{font-size:12.5px;color:var(--olive-deep);border-top:1px dashed var(--line);margin-top:10px;padding-top:8px;}
+  .integrity-box{border-radius:8px;padding:14px 16px;margin:0 0 16px;font-size:13.5px;}
+  .integrity-box h4{margin:0 0 6px;font-size:15px;}
+  .integrity-box ul{margin:6px 0 8px 18px;padding:0;}
+  .integrity-box .note{font-size:12px;opacity:.85;margin:6px 0 0;}
+  @media print{
+    body{background:#fff;}
+    .no-print,.owner-link{display:none !important;}
+    .card{box-shadow:none;border:1px solid #999;}
+    .qa-block,.result-banner,.integrity-box{break-inside:avoid;}
+    *{-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+    .wrap{max-width:100%;padding:0;}
+  }
+</style>
+</head>
+<body>
+<div class="wrap" id="app"></div>
+
+<script>
+/* =========================================================
+   ATUL 3-WHEELER SALES — ADAPTIVE INTERVIEW APP
+   Single-file SPA. Owner-gated results. Excel export.
+========================================================= */
+
+const OWNER_PIN = "73194"; // change this PIN as needed, share only with owner/MD
+const SHEETS_URL = "https://script.google.com/macros/s/AKfycbyySpHOvepagxDaSRN5GKIQODzPLoanS94G8VhSYNNFt0gKmiBOtlJZh2iWfFLqYKT2/exec";
+
+async function saveCandidateToSheet(candidateRecord) {
+  // Apps Script web apps don't return readable CORS responses to fetch(),
+  // so we send with no-cors (fire-and-forget) and verify separately by re-reading the sheet.
+  await fetch(SHEETS_URL, {
+    method: "POST",
+    mode: "no-cors",
+    headers: { "Content-Type": "text/plain;charset=utf-8" },
+    body: JSON.stringify({
+      submittedAt: candidateRecord.submittedAt,
+      name: candidateRecord.name,
+      phone: candidateRecord.phone,
+      role: candidateRecord.role,
+      overallScore: candidateRecord.finalResult ? candidateRecord.finalResult.overallScore : "",
+      verdict: candidateRecord.finalResult ? candidateRecord.finalResult.verdict : "",
+      categoryScores: candidateRecord.finalResult ? candidateRecord.finalResult.categoryScores : {},
+      summary: candidateRecord.finalResult ? candidateRecord.finalResult.summary : "",
+      qaLog: candidateRecord.qaLog,
+      id: candidateRecord.id,
+      aiFailureCount: candidateRecord.aiFailureCount,
+      photo: candidateRecord.photo || "",
+      copyFlag: candidateRecord.copyFlag || "",
+      styleFlag: candidateRecord.styleFlag || "",
+      location: candidateRecord.location || ""
+    })
+  });
+  // Verify the row landed (retry a few times; Apps Script can be slow).
+  let lastErr = null;
+  for (let attempt = 1; attempt <= 3; attempt++) {
+    await new Promise(r => setTimeout(r, 1500 * attempt));
+    try {
+      const res = await fetch(SHEETS_URL + "?_=" + Date.now());
+      if (!res.ok) throw new Error("షీట్ స్పందన లోపం (HTTP " + res.status + ")");
+      const rows = await res.json();
+      const found = rows.some(r => String(r["Name"]) === candidateRecord.name && String(r["Phone"]) === String(candidateRecord.phone));
+      if (found) return true;
+      lastErr = new Error("షీట్‌లో సేవ్ నిర్ధారించబడలేదు.");
+    } catch (e) {
+      lastErr = (e instanceof TypeError)
+        ? new Error("షీట్‌ను చేరుకోలేకపోయాం — ఇంటర్నెట్ లేదా షీట్ లింక్ (Apps Script) అనుమతి సమస్య")
+        : e;
+    }
+  }
+  throw lastErr || new Error("సేవ్ నిర్ధారించలేకపోయాం.");
+}
+
+function parseQaLog(raw) {
+  if (!raw) return [];
+  try { return JSON.parse(raw); } catch (e) { return []; }
+}
+
+const CATEGORY_META = {
+  logic: { label: "తార్కిక ఆలోచన", color: "#4d3c8a" },
+  product: { label: "ఉత్పత్తి పరిజ్ఞానం", color: "#102a57" },
+  sales: { label: "సేల్స్ నైపుణ్యం", color: "#8a3416" },
+  situational: { label: "పరిస్థితుల అంచనా", color: "#8a5a14" },
+  communication: { label: "కమ్యూనికేషన్", color: "#2c5a6b" }
+};
+
+const TOTAL_QUESTIONS = 9;
+const QUALIFY_THRESHOLD = 65; // percent
+
+let state = {
+  screen: "intake", // intake | interview | submitting | done | owner-pin | owner-dashboard | owner-detail
+  candidate: { name: "", phone: "", role: "", photo: "" },
+  qaLog: [], // {question, category, answer, score, feedback}
+  currentQuestion: null,
+  loadingNext: false,
+  finalResult: null,
+  ownerPinInput: "",
+  ownerError: "",
+  allCandidates: [],
+  selectedCandidateId: null,
+  submitError: "",
+  aiFailureCount: 0 // tracks how many times AI calls failed during this candidate's interview
+};
+
+function render() {
+  const app = document.getElementById('app');
+  app.innerHTML = "";
+  app.appendChild(Brandbar());
+  if (state.screen === "intake") app.appendChild(IntakeScreen());
+  else if (state.screen === "interview") app.appendChild(InterviewScreen());
+  else if (state.screen === "submitting") app.appendChild(SubmittingScreen());
+  else if (state.screen === "done") app.appendChild(DoneScreen());
+  else if (state.screen === "owner-pin") app.appendChild(OwnerPinScreen());
+  else if (state.screen === "owner-dashboard") app.appendChild(OwnerDashboard());
+  else if (state.screen === "owner-detail") app.appendChild(OwnerDetail());
+}
+
+function Brandbar(){
+  const bar = document.createElement('div');
+  bar.className = "brandbar";
+  bar.innerHTML = `
+    <div class="mark">
+      <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAQDAwMDAgQDAwMEBAQFBgoGBgUFBgwICQcKDgwPDg4MDQ0PERYTDxAVEQ0NExoTFRcYGRkZDxIbHRsYHRYYGRj/2wBDAQQEBAYFBgsGBgsYEA0QGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBj/wAARCAC/ArwDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwD7+ooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiig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QILGLxG4t4gkNuumldwUYVQS2B0Aya9B/wCGbPgWSSfhloJJOSTExz/49S/8M2fAr/omOg/9+m/+Krpr47CV4wjOMvd7WMKWFr0nJxktT89fAul6r8ZP2qbFZrOSaTWdcOpXwUbhFB53mylj2UKNuT1JA71+ro6VzfhP4feCfAttLB4P8K6Voqy/6w2VusbSem5urfia6XtXHmGNWKlHlVopWR0YTDOgnd3bCiiivPOsKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooA/9k=" alt="Ramcor Mobility Private Limited" class="logo">
+      <div class="tag">ఐచర్ ప్రో X · అభ్యర్థుల ఎంపిక</div>
+    </div>
+    <button class="owner-link" id="ownerBtn">యజమాని లాగిన్</button>
+  `;
+  bar.querySelector('#ownerBtn').onclick = () => {
+    if (state.screen.startsWith('owner')) {
+      state.screen = "intake";
+    } else {
+      state.screen = "owner-pin";
+      state.ownerPinInput = "";
+      state.ownerError = "";
+    }
+    render();
+  };
+  return bar;
+}
+
+/* ---------------- INTAKE ---------------- */
+function IntakeScreen(){
+  const wrap = document.createElement('div');
+  const card = document.createElement('div');
+  card.className = "card";
+  card.innerHTML = `
+    <p class="eyebrow">దరఖాస్తు</p>
+    <h2>సేల్స్ టీమ్ ఇంటర్వ్యూ</h2>
+    <p class="sub">రామ్‌కార్ మొబిలిటీ ప్రైవేట్ లిమిటెడ్‌లో మేము మా ఐచర్ ప్రో X సేల్స్ టీమ్ కోసం నియామకాలు చేస్తున్నాం. చిన్న అడాప్టివ్ ఇంటర్వ్యూ ప్రారంభించడానికి మీ వివరాలను నింపండి — మీ సమాధానాల ఆధారంగా ప్రశ్నలు మారుతూ ఉంటాయి.</p>
+
+    <label>పూర్తి పేరు</label>
+    <input type="text" id="f_name" placeholder="ఉదా. రమేష్ కుమార్" value="${escapeHtml(state.candidate.name)}">
+
+    <label>ఫోన్ నంబర్</label>
+    <input type="tel" id="f_phone" placeholder="10-అంకెల మొబైల్ నంబర్" value="${escapeHtml(state.candidate.phone)}">
+
+    <label>దరఖాస్తు చేస్తున్న పోస్ట్</label>
+    <select id="f_role">
+      <option value="">ఒకటి ఎంచుకోండి</option>
+      <option value="Fresher" ${state.candidate.role==="Fresher"?"selected":""}>ఫ్రెషర్ — ఐచర్ ప్రో X సేల్స్</option>
+      <option value="Experienced" ${state.candidate.role==="Experienced"?"selected":""}>అనుభవం ఉన్నవారు — ఐచర్ ప్రో X సేల్స్</option>
+    </select>
+
+    <label>ఫోటో <span style="color:var(--rust);">*తప్పనిసరి</span></label>
+    <div class="photo-zone" id="photoZone">
+      ${state.candidate.photo ? `<img src="${state.candidate.photo}">` : `<div class="hint">ఫోటో తీయడానికి లేదా అప్‌లోడ్ చేయడానికి నొక్కండి</div>`}
+      <input type="file" id="f_photo" accept="image/*" capture="environment" style="display:none;">
+    </div>
+
+    <div id="intakeErr"></div>
+    <button class="btn btn-primary btn-block" id="startBtn">ఇంటర్వ్యూ ప్రారంభించండి</button>
+    <p class="footer-note">మీ సమాధానాలు గోప్యంగా సమీక్షించబడతాయి. ఫలితాలు కేవలం నియామక యజమానికి మాత్రమే కనిపిస్తాయి.<br>గమనిక: ఈ ఇంటర్వ్యూలో ప్రతి ప్రశ్నకు పట్టిన సమయం, పేస్ట్ చేయడం, వేరే ట్యాబ్/యాప్‌కు వెళ్లడం నమోదు చేయబడతాయి. దయచేసి మీ స్వంత జ్ఞానంతోనే సమాధానాలు రాయండి.</p>
+  `;
+  wrap.appendChild(card);
+
+  card.querySelector('#f_name').oninput = e => state.candidate.name = e.target.value;
+  card.querySelector('#f_phone').oninput = e => state.candidate.phone = e.target.value.replace(/[^\d+\s-]/g,'');
+  card.querySelector('#f_role').onchange = e => state.candidate.role = e.target.value;
+
+  const zone = card.querySelector('#photoZone');
+  const fileInput = card.querySelector('#f_photo');
+  zone.onclick = () => fileInput.click();
+  fileInput.onchange = (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = (ev) => {
+      const img = new Image();
+      img.onload = () => {
+        // Resize down to a small thumbnail so the base64 stays well under
+        // Google Sheets' ~50,000 char per-cell limit.
+        const maxDim = 120;
+        let { width, height } = img;
+        if (width > height) {
+          if (width > maxDim) { height = Math.round(height * (maxDim / width)); width = maxDim; }
+        } else {
+          if (height > maxDim) { width = Math.round(width * (maxDim / height)); height = maxDim; }
+        }
+        const canvas = document.createElement('canvas');
+        canvas.width = width;
+        canvas.height = height;
+        canvas.getContext('2d').drawImage(img, 0, 0, width, height);
+        state.candidate.photo = canvas.toDataURL('image/jpeg', 0.4);
+        render();
+      };
+      img.src = ev.target.result;
+    };
+    reader.readAsDataURL(file);
+  };
+
+  card.querySelector('#startBtn').onclick = async () => {
+    const errBox = card.querySelector('#intakeErr');
+    if (!state.candidate.name.trim() || !state.candidate.phone.trim() || !state.candidate.role) {
+      errBox.innerHTML = `<div class="err-box">కొనసాగించడానికి దయచేసి పేరు, ఫోన్ నంబర్ నింపి, పోస్ట్ ఎంచుకోండి.</div>`;
+      return;
+    }
+    if (state.candidate.phone.replace(/\D/g,'').length < 10) {
+      errBox.innerHTML = `<div class="err-box">దయచేసి సరైన ఫోన్ నంబర్ నమోదు చేయండి.</div>`;
+      return;
+    }
+    if (!state.candidate.photo) {
+      errBox.innerHTML = `<div class="err-box">ప్రారంభించే ముందు దయచేసి ఫోటో తీయండి లేదా అప్‌లోడ్ చేయండి — పైన ఉన్న ఫోటో బాక్స్‌ను నొక్కండి.</div>`;
+      zone.scrollIntoView({ behavior: "smooth", block: "center" });
+      return;
+    }
+    state.candidate.id = 'cand_' + Date.now() + '_' + Math.random().toString(36).slice(2,8);
+    state.candidate.submittedAt = new Date().toISOString();
+
+    // Capture location in the background (best-effort, never blocks the interview if denied/unavailable)
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        (pos) => {
+          const lat = pos.coords.latitude.toFixed(5);
+          const lng = pos.coords.longitude.toFixed(5);
+          state.candidate.location = `https://www.google.com/maps?q=${lat},${lng}`;
+        },
+        () => { state.candidate.location = "లొకేషన్ షేర్ చేయలేదు"; },
+        { timeout: 5000 }
+      );
+    } else {
+      state.candidate.location = "ఈ పరికరంలో లొకేషన్ మద్దతు లేదు";
+    }
+
+    state.screen = "interview";
+    render();
+    await fetchNextQuestion();
+  };
+
+  return wrap;
+}
+
+/* ---------------- INTERVIEW ---------------- */
+function InterviewScreen(){
+  const wrap = document.createElement('div');
+  const card = document.createElement('div');
+  card.className = "card";
+
+  const segHtml = Array.from({length: TOTAL_QUESTIONS}).map((_,i) => {
+    let cls = "progress-seg";
+    if (i < state.qaLog.length) cls += " done";
+    else if (i === state.qaLog.length) cls += " active";
+    return `<div class="${cls}"></div>`;
+  }).join("");
+
+  if (state.loadingNext || !state.currentQuestion) {
+    card.innerHTML = `
+      <div class="progress-rail">${segHtml}</div>
+      <div class="loading-row"><div class="spinner"></div> మీ తదుపరి ప్రశ్నను సిద్ధం చేస్తున్నాం...</div>
+    `;
+    wrap.appendChild(card);
+    return wrap;
+  }
+
+  const q = state.currentQuestion;
+  const catMeta = CATEGORY_META[q.category] || {label: q.category};
+  card.innerHTML = `
+    <div class="progress-rail">${segHtml}</div>
+    <span class="qcat ${q.category}">${catMeta.label}</span>
+    <p class="qtext">${escapeHtml(q.question)}</p>
+    <textarea id="answerBox" placeholder="మీ సమాధానం ఇక్కడ టైప్ చేయండి..."></textarea>
+    <div id="interviewErr"></div>
+    <button class="btn btn-primary btn-block" id="submitAnswerBtn">సమాధానం సమర్పించండి</button>
+  `;
+  wrap.appendChild(card);
+
+  const box = card.querySelector('#answerBox');
+  setTimeout(() => box.focus(), 50);
+  box.addEventListener('paste', (e) => {
+    const cd = e.clipboardData || window.clipboardData;
+    const txt = cd ? cd.getData('text') : '';
+    if (state.currentMeta) { state.currentMeta.pastes++; state.currentMeta.pastedChars += txt.length; }
+  });
+  box.addEventListener('drop', (e) => {
+    const txt = e.dataTransfer ? e.dataTransfer.getData('text') : '';
+    if (state.currentMeta) { state.currentMeta.pastes++; state.currentMeta.pastedChars += txt.length; }
+  });
+  box.addEventListener('keydown', () => { if (state.currentMeta) state.currentMeta.keys++; });
+
+  card.querySelector('#submitAnswerBtn').onclick = async () => {
+    const ans = box.value.trim();
+    const errBox = card.querySelector('#interviewErr');
+    if (!ans) {
+      errBox.innerHTML = `<div class="err-box">కొనసాగించే ముందు దయచేసి సమాధానం రాయండి.</div>`;
+      return;
+    }
+    state.loadingNext = true;
+    render();
+    await gradeAnswerAndAdvance(q, ans);
+  };
+
+  return wrap;
+}
+
+function SubmittingScreen(){
+  const wrap = document.createElement('div');
+  const card = document.createElement('div');
+  card.className = "card center-pad";
+  card.innerHTML = `
+    <div class="spinner"></div>
+    <p style="margin-top:4px; color:var(--ink-soft);">మీ ఇంటర్వ్యూను ఖరారు చేస్తున్నాం...</p>
+  `;
+  wrap.appendChild(card);
+  return wrap;
+}
+
+function DoneScreen(){
+  const wrap = document.createElement('div');
+  const card = document.createElement('div');
+  card.className = "card";
+
+  if (state.saveSucceeded) {
+    card.innerHTML = `
+      <p class="eyebrow">ఇంటర్వ్యూ పూర్తయింది</p>
+      <h2>ధన్యవాదాలు, ${escapeHtml(state.candidate.name.split(' ')[0] || 'అభ్యర్థి')}.</h2>
+      <p class="sub">మీ ఇంటర్వ్యూ రికార్డ్ చేయబడి సమీక్ష కోసం సమర్పించబడింది. మీరు తదుపరి రౌండ్‌కు షార్ట్‌లిస్ట్ అయితే మా నియామక బృందం <strong>${escapeHtml(state.candidate.phone)}</strong> నంబర్‌కు సంప్రదిస్తుంది.</p>
+      <p class="footer-note">మీరు ఇప్పుడు ఈ పేజీని మూసివేయవచ్చు.</p>
+    `;
+  } else {
+    const backupCode = btoa(unescape(encodeURIComponent(JSON.stringify({
+      id: state.candidate.id, name: state.candidate.name, phone: state.candidate.phone,
+      role: state.candidate.role, submittedAt: state.candidate.submittedAt,
+      qaLog: state.qaLog, finalResult: state.finalResult
+    }))));
+    card.innerHTML = `
+      <p class="eyebrow">ఇంటర్వ్యూ పూర్తయింది — సేవ్ చేయడంలో సమస్య</p>
+      <h2>మీ సమాధానాలు ఆటోమేటిక్‌గా సేవ్ కాలేదు</h2>
+      <p class="sub">మేము ఇప్పుడు మీ ఫలితాన్ని నియామక బృందం సిస్టమ్‌కు సేవ్ చేయలేకపోయాం (${escapeHtml(state.saveErrorDetail || 'కనెక్షన్ సమస్య')}). దయచేసి ఈ పేజీని మూసివేయవద్దు — బదులుగా, కింద ఉన్న కోడ్ యొక్క స్క్రీన్‌షాట్ తీసి, మీ పేరు మరియు ఫోన్ నంబర్‌తో పాటు ఈ ఇంటర్వ్యూ లింక్ మీకు షేర్ చేసిన వ్యక్తికి పంపండి.</p>
+      <textarea readonly style="font-family:monospace; font-size:11px; min-height:90px;">${backupCode}</textarea>
+      <button class="btn btn-ghost btn-block" id="retrySaveBtn">మళ్ళీ సేవ్ చేయడానికి ప్రయత్నించండి</button>
+    `;
+    wrap.appendChild(card);
+    setTimeout(() => {
+      const btn = document.getElementById('retrySaveBtn');
+      if (btn) btn.onclick = async () => {
+        state.screen = "submitting";
+        render();
+        await retrySave();
+      };
+    }, 0);
+    return wrap;
+  }
+
+  wrap.appendChild(card);
+  return wrap;
+}
+
+async function retrySave() {
+  const candidateRecord = {
+    id: state.candidate.id,
+    name: state.candidate.name,
+    phone: state.candidate.phone,
+    role: state.candidate.role,
+    photo: state.candidate.photo,
+    submittedAt: state.candidate.submittedAt,
+    qaLog: state.qaLog,
+    finalResult: state.finalResult,
+    aiFailureCount: state.aiFailureCount
+  };
+  try {
+    await saveCandidateToSheet(candidateRecord);
+    state.saveSucceeded = true;
+    state.saveErrorDetail = "";
+  } catch (err) {
+    state.saveSucceeded = false;
+    state.saveErrorDetail = (err && err.message) ? err.message : "షీట్‌కు సేవ్ చేయడంలో తెలియని లోపం.";
+  }
+  state.screen = "done";
+  render();
+}
+
+/* ---------------- OWNER SCREENS ---------------- */
+function OwnerPinScreen(){
+  const wrap = document.createElement('div');
+  const card = document.createElement('div');
+  card.className = "card pin-box";
+  card.innerHTML = `
+    <p class="eyebrow">యజమాని యాక్సెస్</p>
+    <h2>PIN నమోదు చేయండి</h2>
+    <p class="sub">ఫలితాలు గోప్యంగా ఉంటాయి మరియు కేవలం నియామక యజమానికి మాత్రమే కనిపిస్తాయి.</p>
+    <input type="text" id="pinInput" inputmode="numeric" placeholder="PIN నమోదు చేయండి" style="text-align:center; font-size:20px; letter-spacing:0.2em;">
+    <div id="pinErr"></div>
+    <button class="btn btn-primary btn-block" id="pinSubmit">అన్‌లాక్ చేయండి</button>
+  `;
+  wrap.appendChild(card);
+
+  const input = card.querySelector('#pinInput');
+  setTimeout(()=>input.focus(),50);
+  const tryUnlock = async () => {
+    if (input.value === OWNER_PIN) {
+      state.screen = "owner-dashboard";
+      render();
+      await loadAllCandidates();
+    } else {
+      card.querySelector('#pinErr').innerHTML = `<div class="err-box">తప్పు PIN. దయచేసి మళ్ళీ ప్రయత్నించండి.</div>`;
+    }
+  };
+  card.querySelector('#pinSubmit').onclick = tryUnlock;
+  input.onkeydown = (e) => { if (e.key === 'Enter') tryUnlock(); };
+
+  return wrap;
+}
+
+function OwnerDashboard(){
+  const wrap = document.createElement('div');
+
+  if (state.loadError) {
+    const errBanner = document.createElement('div');
+    errBanner.className = "err-box";
+    errBanner.style.marginBottom = "12px";
+    errBanner.textContent = "ఫలితాలు లోడ్ చేయలేకపోయాం: " + state.loadError + " — మళ్ళీ ప్రయత్నించడానికి రిఫ్రెష్ నొక్కండి.";
+    wrap.appendChild(errBanner);
+  }
+
+  const top = document.createElement('div');
+  top.className = "topbar-owner";
+  top.innerHTML = `
+    <h2 style="margin:0;">అభ్యర్థులు (${state.allCandidates.length})</h2>
+    <div class="no-print" style="display:flex; gap:8px;">
+      <button class="btn btn-ghost" id="printBtn"><span>🖨 ప్రింట్</span></button>
+      <button class="btn btn-ghost" id="refreshBtn"><span>రిఫ్రెష్</span></button>
+      <button class="btn btn-ghost" id="exportBtn"><span>Excel కు ఎగుమతి చేయండి</span></button>
+    </div>
+  `;
+  wrap.appendChild(top);
+
+  if (state.allCandidates.length === 0) {
+    const empty = document.createElement('div');
+    empty.className = "card empty-state";
+    empty.textContent = "ఇంటర్వ్యూ ఇంకా పూర్తి చేసిన అభ్యర్థులు లేరు.";
+    wrap.appendChild(empty);
+  } else {
+    const sorted = [...state.allCandidates].sort((a,b) => new Date(b.submittedAt) - new Date(a.submittedAt));
+    sorted.forEach(c => {
+      const row = document.createElement('div');
+      row.className = "cand-row";
+      const initials = (c.name || "?").split(' ').map(s=>s[0]).join('').slice(0,2).toUpperCase();
+      const verdictClass = c.finalResult ? (c.finalResult.verdict === "Qualify" ? "qualify" : "disqualify") : "pending";
+      const verdictText = c.finalResult ? (c.finalResult.verdict === "Qualify" ? "అర్హత" : "అనర్హత") : "పెండింగ్‌లో ఉంది";
+      row.innerHTML = `
+        ${c.photo ? `<img class="avatar" src="${c.photo}">` : `<div class="avatar-fallback">${initials}</div>`}
+        <div class="meta">
+          <div class="name">${escapeHtml(c.name)}</div>
+          <p class="sub">${escapeHtml(c.role || '')} · ${escapeHtml(c.phone || '')}</p>
+        </div>
+        <span class="pill ${verdictClass}">${verdictText}</span>
+        ${c.copyFlag
+          ? `<span class="pill" style="background:#f8d7da;color:#842029;margin-left:6px;">⚠️ కాపీ కావొచ్చు</span>`
+          : `<span class="pill" style="background:#d1e7dd;color:#0f5132;margin-left:6px;">✓ నిజమైనది</span>`}
+      `;
+      row.insertAdjacentHTML('beforeend', integrityPill(c));
+      row.onclick = () => { state.selectedCandidateId = c.id; state.screen = "owner-detail"; render(); };
+      wrap.appendChild(row);
+    });
+  }
+
+  const importCard = document.createElement('div');
+  importCard.className = "card no-print";
+  importCard.style.marginTop = "20px";
+  importCard.innerHTML = `
+    <p class="eyebrow">తప్పిపోయిన ఫలితాన్ని రికవర్ చేయండి</p>
+    <p class="sub" style="margin-bottom:10px;">ఒక అభ్యర్థి తన ఫలితం సేవ్ కాలేదని చెప్పి బ్యాకప్ కోడ్ పంపితే, దానిని ఇక్కడ పేస్ట్ చేయండి.</p>
+    <textarea id="importCodeBox" placeholder="బ్యాకప్ కోడ్‌ను ఇక్కడ పేస్ట్ చేయండి" style="min-height:70px; font-family:monospace; font-size:12px;"></textarea>
+    <div id="importErr"></div>
+    <button class="btn btn-ghost btn-block" id="importBtn">ఫలితాన్ని రికవర్ చేయండి</button>
+  `;
+  wrap.appendChild(importCard);
+
+  setTimeout(() => {
+    const pb = document.getElementById('printBtn'); if (pb) pb.onclick = () => window.print();
+    const btn = document.getElementById('exportBtn');
+    if (btn) btn.onclick = exportToExcel;
+    const refreshBtn = document.getElementById('refreshBtn');
+    if (refreshBtn) refreshBtn.onclick = loadAllCandidates;
+    const importBtn = document.getElementById('importBtn');
+    if (importBtn) importBtn.onclick = async () => {
+      const box = document.getElementById('importCodeBox');
+      const errBox = document.getElementById('importErr');
+      try {
+        const decoded = JSON.parse(decodeURIComponent(escape(atob(box.value.trim()))));
+        if (!decoded.id || !decoded.name) throw new Error("కోడ్‌లో అవసరమైన వివరాలు లేవు.");
+        await saveCandidateToSheet(decoded);
+        await loadAllCandidates();
+      } catch (err) {
+        errBox.innerHTML = `<div class="err-box">ఈ కోడ్‌ను చదవలేకపోయాం. ఇది పూర్తిగా కాపీ చేయబడిందో లేదో దయచేసి తనిఖీ చేయండి.</div>`;
+      }
+    };
+  }, 0);
+
+  return wrap;
+}
+
+function OwnerDetail(){
+  const wrap = document.createElement('div');
+  const c = state.allCandidates.find(x => x.id === state.selectedCandidateId);
+  if (!c) {
+    wrap.innerHTML = `<div class="card empty-state">అభ్యర్థి కనుగొనబడలేదు.</div>`;
+    return wrap;
+  }
+
+  const back = document.createElement('a');
+  back.className = "linklike no-print";
+  back.textContent = "← అందరు అభ్యర్థులకు తిరిగి వెళ్ళండి";
+  back.style.display = "inline-block";
+  back.style.marginBottom = "16px";
+  back.onclick = () => { state.screen = "owner-dashboard"; render(); };
+  wrap.appendChild(back);
+  const pbtn = document.createElement('button');
+  pbtn.className = 'btn btn-ghost no-print';
+  pbtn.style.cssText = 'float:right;padding:8px 14px;font-size:13px;';
+  pbtn.textContent = '🖨 ప్రింట్ / PDF';
+  pbtn.onclick = () => window.print();
+  wrap.appendChild(pbtn);
+
+  const headerCard = document.createElement('div');
+  headerCard.className = "card";
+  const fr = c.finalResult || {};
+  const verdictClass = fr.verdict === "Qualify" ? "qualify" : "disqualify";
+  const initials = (c.name||"?").split(' ').map(s=>s[0]).join('').slice(0,2).toUpperCase();
+
+  headerCard.innerHTML = `
+    <div style="display:flex; gap:16px; align-items:center; margin-bottom:18px;">
+      ${c.photo ? `<img class="avatar" style="width:64px;height:64px;" src="${c.photo}">` : `<div class="avatar-fallback" style="width:64px;height:64px;font-size:20px;">${initials}</div>`}
+      <div>
+        <h2 style="margin:0 0 4px;">${escapeHtml(c.name)}</h2>
+        <p class="sub" style="margin:0;">${escapeHtml(c.role||'')} · ${escapeHtml(c.phone||'')}</p>
+        <span class="pill" style="${c.copyFlag ? 'background:#f8d7da;color:#842029;' : 'background:#d1e7dd;color:#0f5132;'} margin-top:6px; display:inline-block;">
+          ${c.copyFlag ? '⚠️ కాపీ కావొచ్చు' : '✓ నిజమైనది'}
+        </span>
+      </div>
+    </div>
+    ${c.aiFailureCount ? `<div class="err-box">ఈ ఇంటర్వ్యూ సమయంలో ప్రశ్నలు రూపొందించడంలో లేదా గ్రేడ్ చేయడంలో AI కి ${c.aiFailureCount} సమస్య(లు) వచ్చాయి. కింద ఉన్న కొన్ని ప్రశ్నలు/స్కోర్‌లు ఆటో-ఫిల్డ్ ఫాల్‌బ్యాక్‌లు కావొచ్చు — ఈ నిర్ణయంపై ఆధారపడే ముందు దయచేసి మాన్యువల్‌గా సమీక్షించండి.</div>` : ``}
+    ${c.copyFlag ? `<div class="err-box">⚠️ కాపీ చేసిన సమాధానం(లు) కనిపెట్టబడ్డాయి: ${escapeHtml(c.copyFlag)}</div>` : ``}
+    ${c.styleFlag ? `<div class="err-box">📋 మాన్యువల్‌గా చూడదగినది (శైలి ఆధారిత సూచన, రుజువు కాదు): ${escapeHtml(c.styleFlag)}</div>` : ``}
+    ${c.location ? `<p class="sub" style="margin:0 0 12px;">📍 ${c.location.startsWith('http') ? `<a href="${c.location}" target="_blank">మ్యాప్‌లో లొకేషన్ చూడండి</a>` : escapeHtml(c.location)}</p>` : ``}
+    ${integrityHtml(c)}
+    <div class="result-banner ${verdictClass}">
+      <div style="font-size:12px; text-transform:uppercase; letter-spacing:0.08em; color:var(--ink-soft);">తుది నిర్ణయం</div>
+      <div class="verdict">${fr.verdict === 'Qualify' ? 'అర్హత' : (fr.verdict === 'Disqualify' ? 'అనర్హత' : 'వర్తించదు')}</div>
+      <div class="score-big">${fr.overallScore != null ? fr.overallScore + '%' : '—'}</div>
+      <p style="margin:6px 0 0; color:var(--ink-soft); font-size:14px;">${escapeHtml(fr.summary || '')}</p>
+    </div>
+    <div class="cat-bars" id="catBars"></div>
+  `;
+  wrap.appendChild(headerCard);
+
+  const catBars = headerCard.querySelector('#catBars');
+  if (fr.categoryScores) {
+    Object.entries(fr.categoryScores).forEach(([cat, score]) => {
+      const meta = CATEGORY_META[cat] || {label: cat, color: '#888'};
+      const row = document.createElement('div');
+      row.className = "cat-bar-row";
+      row.innerHTML = `
+        <div>${meta.label}</div>
+        <div class="cat-bar-track"><div class="cat-bar-fill" style="width:${score}%; background:${meta.color};"></div></div>
+        <div style="text-align:right; font-weight:600;">${score}%</div>
+      `;
+      catBars.appendChild(row);
+    });
+  }
+
+  const qaTitle = document.createElement('h3');
+  qaTitle.textContent = "ప్రశ్న వారీగా సమీక్ష";
+  qaTitle.style.margin = "8px 0 12px";
+  wrap.appendChild(qaTitle);
+
+  (c.qaLog || []).forEach((qa, idx) => {
+    const block = document.createElement('div');
+    block.className = "qa-block";
+    const meta = CATEGORY_META[qa.category] || {label: qa.category};
+    let gradeClass = "grade-mid";
+    if (qa.score >= 75) gradeClass = "grade-good";
+    else if (qa.score < 50) gradeClass = "grade-low";
+    block.innerHTML = `
+      <span class="qcat ${qa.category}" style="margin-bottom:8px;">${meta.label}</span>
+      <p class="q">${idx+1}. ${escapeHtml(qa.question)}</p>
+      <p class="a">${escapeHtml(qa.answer)}</p>
+      ${qaMetaHtml(qa)}
+      <div class="grade-row">
+        <span class="grade-score ${gradeClass}">${qa.score}/100</span>
+        <span style="color:var(--ink-soft);">${escapeHtml(qa.feedback || '')}</span>
+      </div>
+      ${qa.correctAnswer ? `<div class="qa-ideal"><strong>ఆదర్శ సమాధానం:</strong> ${escapeHtml(qa.correctAnswer)}</div>` : ''}
+    `;
+    wrap.appendChild(block);
+  });
+
+  return wrap;
+}
+
+/* ---------------- LOCAL QUESTION BANK + SCORING ENGINE (no AI / no API needed) ---------------- */
+
+// Each question has: text, keywords (concepts that should appear in a good answer),
+// minWords (very short answers get capped low), and for logic questions, an answerCheck function.
+const QUESTION_BANK = {
+  logic: [
+    { text: "మీరు ఈ నెల 15 యూనిట్లు అమ్మాలి, మొదటి 18 రోజుల్లో 6 అమ్మారు. లక్ష్యాన్ని చేరుకోవడానికి మిగిలిన ప్రతి రోజు ఎన్ని అమ్మాలి?", keywords: ["9","0.75","remaining","day","ప్రతి రెండు రోజులకు ఒకటి"], answerCheck: (a)=>/0\.75|3\s*\/\s*4|9\s*(units|more)?\s*(in|over)?\s*12|1\s*(unit)?\s*\w{2,6}\s*2\s*days?/i.test(a) || /\b9\b.*\b12\b/.test(a), correctAnswer: "15 - 6 = 9 యూనిట్లు మిగిలాయి. 30 - 18 = 12 రోజులు మిగిలాయి. 9 ÷ 12 = రోజుకు 0.75 యూనిట్లు (సుమారు ప్రతి 2 రోజులకు 1 యూనిట్)." },
+    { text: "ఐచర్ ప్రో X EMI నెలకు ₹30,000 చొప్పున 60 నెలలు, ₹2,00,000 డౌన్ పేమెంట్‌తో ఉంటే, కస్టమర్ మొత్తం ఎంత చెల్లిస్తారు?", keywords: ["2000000","20,00,000","1800000","emi","down payment"], answerCheck: (a)=>/20,?00,?000|2000000/.test(a.replace(/\s/g,'')), correctAnswer: "₹30,000 × 60 = ₹18,00,000 (EMI మొత్తం) + ₹2,00,000 (డౌన్ పేమెంట్) = మొత్తం ₹20,00,000." },
+    { text: "ఒక కస్టమర్ ₹18,00,000 ధర ఉన్న వాహనంపై 10% డిస్కౌంట్ అడుగుతున్నారు. తగ్గింపు ధర ఎంత, మరియు ధరను నిలబెట్టుకోవడానికి మీరు ఏమి చెబుతారు?", keywords: ["1620000","16,20,000","value","resale","service","justify","విలువ","సర్వీస్"], answerCheck: (a)=>/16,?20,?000|1620000/.test(a.replace(/\s/g,'')), correctAnswer: "₹18,00,000లో 10% = ₹1,80,000. తగ్గింపు ధర = ₹16,20,000. ధరను నిలబెట్టుకోవడానికి: వారంటీ, సర్వీస్ మద్దతు, రీసేల్ విలువ మరియు బ్రాండ్ విశ్వసనీయతను హైలైట్ చేయాలి." },
+    { text: "మీ డీలర్‌షిప్ ప్రతి యూనిట్‌కు ₹5,000 కమిషన్ ఇస్తుంది. మీరు నెలలో 4 యూనిట్లు అమ్మితే, ఆ నెల మీకు ఎంత కమిషన్ వస్తుంది, మరియు తదుపరి నెలకు మిమ్మల్ని ప్రేరేపించుకోవడానికి ఈ లెక్కను ఎలా ఉపయోగిస్తారు?", keywords: ["20000","motivate","target","month","ప్రేరణ","లక్ష్యం"], answerCheck: (a)=>/20,?000/.test(a.replace(/\s/g,'')), correctAnswer: "₹5,000 × 4 = ₹20,000 కమిషన్. ప్రేరణ: తదుపరి నెల ఎక్కువ లక్ష్యం పెట్టుకోవాలి (ఉదా. 5-6 యూనిట్లు) మరియు అదనపు సంపాదనను లెక్కించాలి." },
+    { text: "అదే లోన్ మొత్తానికి కస్టమర్ 60కి బదులు 36 EMIలలో చెల్లించాలనుకుంటున్నారు. EMI మొత్తం పెరుగుతుందా లేదా తగ్గుతుందా, ఎందుకు?", keywords: ["up","higher","shorter","tenure","interest","పెరుగుతుంది","తక్కువ కాలం"], answerCheck: null, correctAnswer: "EMI పెరుగుతుంది. తక్కువ కాలవ్యవధి = తక్కువ వాయిదాలు = ఎక్కువ నెలవారీ చెల్లింపు. అయితే, తక్కువ కాలవ్యవధితో మొత్తం వడ్డీ తక్కువగా ఉంటుంది." },
+    { text: "మీ షోరూమ్ లక్ష్యం నెలకు 30 యూనిట్లు మరియు ముగ్గురు సేల్స్‌పర్సన్‌లు దానిని సమానంగా పంచుకుంటే, ప్రతి ఒక్కరు ఎన్ని యూనిట్లు అమ్మాలి?", keywords: ["10","equally","share","సమానంగా"], answerCheck: (a)=>/\b10\b/.test(a), correctAnswer: "30 ÷ 3 = ప్రతి సేల్స్‌పర్సన్‌కు నెలకు 10 యూనిట్లు." },
+    { text: "మీరు నెలకు ₹25,000 స్థిర జీతం + యూనిట్‌కు ₹2,000 అదనపు కమిషన్ పొందుతారు. ఈ నెల 8 యూనిట్లు అమ్మితే మీ మొత్తం ఆదాయం ఎంత?", keywords: ["41000","41,000","total income"], answerCheck: (a)=>/41,?000/.test(a.replace(/\s/g,'')), correctAnswer: "₹25,000 + (8 × ₹2,000) = ₹25,000 + ₹16,000 = మొత్తం ₹41,000." },
+    { text: "మీ షోరూమ్‌లో 45 రోజుల్లో 18 వాహనాలు అమ్ముడయ్యాయి. సగటు రోజువారీ అమ్మకాల రేటు ఎంత, మరియు 30 రోజుల నెలవారీ అంచనా ఎంత?", keywords: ["0.4","12","rate","average","సగటు"], answerCheck: (a)=>/0\.4/.test(a) && /\b12\b/.test(a), correctAnswer: "18 ÷ 45 = రోజుకు 0.4 వాహనాలు. 0.4 × 30 = నెలకు సుమారు 12 వాహనాలు." },
+    { text: "ఒక వాహనం ధర ₹15,00,000, మరియు దానిపై 5% GST అదనంగా చెల్లించాలి. కస్టమర్ మొత్తం ఎంత చెల్లించాలి?", keywords: ["1575000","15,75,000","75000","gst"], answerCheck: (a)=>/15,?75,?000|1575000/.test(a.replace(/\s/g,'')), correctAnswer: "₹15,00,000లో 5% GST = ₹75,000. మొత్తం చెల్లించాల్సిన మొత్తం = ₹15,75,000." },
+    { text: "మీరు ఈ త్రైమాసికంలో (3 నెలలు) 90 యూనిట్లు అమ్మాలి. మొదటి నెలలో 22, రెండో నెలలో 28 అమ్మారు. మూడో నెలలో లక్ష్యం చేరుకోవడానికి ఎన్ని అమ్మాలి?", keywords: ["40","remaining","quarter"], answerCheck: (a)=>/\b40\b/.test(a), correctAnswer: "90 - 22 - 28 = మూడో నెలలో 40 యూనిట్లు అమ్మాలి." }
+  ],
+  product: [
+    { text: "నడుపు ఖర్చు పరంగా డీజిల్, CNG మరియు ఎలక్ట్రిక్ ఐచర్ ప్రో X మధ్య తేడా ఏమిటి, మరియు ఏ కస్టమర్‌కు ఏది సిఫారసు చేస్తారు?", keywords: ["running cost","diesel","cng","electric","fuel","charging","battery","నడుపు ఖర్చు","ఎలక్ట్రిక్","ఛార్జింగ్"], correctAnswer: "డీజిల్: ఎక్కువ దూరం/భారీ లోడ్ మార్గాలకు, ఇంధనం అన్నిచోట్లా దొరుకుతుంది. CNG: సిటీలో CNG స్టేషన్లు ఉన్న చోట తక్కువ ఇంధన ఖర్చు. ఎలక్ట్రిక్: రోజువారీ మార్గం నిర్ణీతంగా ఉండి ఛార్జింగ్ సౌకర్యం ఉన్న సిటీ వినియోగానికి అతి తక్కువ నడుపు ఖర్చు. కస్టమర్ మార్గం, రోజువారీ దూరం, ఇంధన/ఛార్జింగ్ లభ్యతను బట్టి సిఫారసు చేయాలి." },
+    { text: "గూడ్స్-రవాణా కస్టమర్ లోడింగ్ సామర్థ్యం గురించి అడుగుతున్నారు. మోడల్ సిఫారసు చేయడానికి ముందు మీరు ఏ ప్రశ్నలు అడుగుతారు?", keywords: ["weight","load","payload","route","distance","goods","type of goods","budget","బరువు","దూరం","లోడ్"], correctAnswer: "అడగాల్సినవి: ఏ రకమైన వస్తువులు? బరువు/పరిమాణం ఎంత? మార్గం ఏమిటి (సిటీ/హైవే/గ్రామీణం)? రోజువారీ దూరం ఎంత? ఏ ఇంధన రకం అనుకూలం? బడ్జెట్ ఎంత?" },
+    { text: "ఏ ఇంధన రకం (డీజిల్/CNG/ఎలక్ట్రిక్) తీసుకోవాలో తెలియక కస్టమర్ గందరగోళంగా ఉన్నారు. వారు నిర్ణయించుకోవడానికి మీరు ఎలా సహాయం చేస్తారు?", keywords: ["route","daily","distance","availability","station","charging","budget","మార్గం","దూరం","బడ్జెట్"], correctAnswer: "రోజువారీ కిలోమీటర్లు, మార్గం, వారి ప్రాంతంలో CNG స్టేషన్లు/ఛార్జింగ్ సౌకర్యం/డీజిల్ లభ్యత, బడ్జెట్ మరియు లోడ్ రకం గురించి అడగాలి. తర్వాత మొత్తం ఖర్చును పోల్చి, వారికి సరిపోయేదాన్ని సరళంగా వివరించి సిఫారసు చేయాలి." },
+    { text: "కమర్షియల్ వాహనం మొదటిసారి కొంటున్న, క్రెడిట్ హిస్టరీ తక్కువ ఉన్న కస్టమర్‌కు మీరు ఏ ఫైనాన్సింగ్ లేదా EMI ఆప్షన్లు అందిస్తారు?", keywords: ["down payment","guarantor","co-applicant","nbfc","finance","emi","cibil","డౌన్ పేమెంట్","గ్యారంటర్"], correctAnswer: "లోన్ రిస్క్ తగ్గించడానికి ఎక్కువ డౌన్ పేమెంట్ సూచించాలి, గ్యారంటర్ లేదా కో-అప్లికెంట్ చేర్చాలి, వాహన ఆదాయ అంచనాను చూపించాలి, కమర్షియల్ వాహన ఫైనాన్స్ అందించే బ్యాంకులు/NBFCలను పరిశీలించాలి." },
+    { text: "మొదటిసారి కొనుగోలుదారుకు భరోసా ఇవ్వడానికి మీరు ఏ ఆఫ్టర్-సేల్స్ సర్వీస్ లేదా వారంటీ అంశాలు చెబుతారు?", keywords: ["warranty","service","after-sales","spare parts","maintenance","uptime","వారంటీ","సర్వీస్"], correctAnswer: "చెప్పాల్సినవి: తయారీదారు వారంటీ కాలం, సమీపంలోని అధీకృత సర్వీస్ సెంటర్లు, స్పేర్ పార్ట్స్ లభ్యత, షెడ్యూల్డ్ మెయింటెనెన్స్ మద్దతు, ఐచర్ అప్‌టైమ్ సర్వీసెస్, ఐచర్ జెన్యూన్ పార్ట్స్, My Eicher యాప్ మరియు ఐచర్ ఫైనాన్స్/ఎక్స్ఛేంజ్ వంటి సేవలు." },
+    { text: "పోటీదారు కంపెనీ చిన్న కమర్షియల్ వాహనం చౌకగా ఉందని కస్టమర్ చెప్పారు. ఐచర్ ప్రో X విలువను మీరు ఎలా వివరిస్తారు?", keywords: ["total cost","ownership","mileage","maintenance","resale","brand","service","uptime","మొత్తం ఖర్చు","నిర్వహణ"], correctAnswer: "ధర తేడాను అంగీకరించాలి, తర్వాత మొత్తం యాజమాన్య ఖర్చుపై దృష్టి మార్చాలి: ఇంధన పొదుపు, తక్కువ మెయింటెనెన్స్, ఆఫ్టర్-సేల్స్ సేవ, రీసేల్ విలువ మరియు ఐచర్ బ్రాండ్ నమ్మకం." },
+    { text: "డెలివరీ వ్యాపారం నడిపే ఫ్లీట్ యజమానికి ఐచర్ ప్రో X ను మీరు ఎలా పిచ్ చేస్తారు?", keywords: ["fleet","uptime","savings","delivery","cost per km","reliability","ఫ్లీట్","పొదుపు","నమ్మకం"], correctAnswer: "వారి రోజువారీ మార్గాలు మరియు ట్రిప్పులను అడిగి అర్థం చేసుకోవాలి; కిలోమీటరుకు ఖర్చు, నమ్మకమైన పనితీరు, తక్కువ డౌన్‌టైమ్, సర్వీస్ నెట్‌వర్క్ మరియు ఫ్లీట్ పరిమాణం ప్రకారం ఆఫర్లను హైలైట్ చేయాలి." },
+    { text: "కొత్త కమర్షియల్ వాహన రిజిస్ట్రేషన్, పర్మిట్ మరియు ప్రభుత్వ ప్రోత్సాహకాల గురించి కస్టమర్ అడిగితే మీరు ఏమి చెబుతారు?", keywords: ["permit","rto","registration","road tax","incentive","subsidy","state","పర్మిట్","రిజిస్ట్రేషన్","సబ్సిడీ"], correctAnswer: "రిజిస్ట్రేషన్/పర్మిట్ నిబంధనలు మరియు ప్రోత్సాహకాలు రాష్ట్రం మరియు ఇంధన రకాన్ని బట్టి మారవచ్చు. తెలిసిన ప్రాథమిక విషయాలు చెప్పి, ఖచ్చితమైన తాజా సమాచారం RTO/కంపెనీ నుండి నిర్ధారించి తెలియజేస్తానని చెప్పాలి; డాక్యుమెంట్లతో సహాయం చేయాలి." }
+    ,
+    { text: "ఐచర్ ప్రో X డీజిల్‌లో 3T మరియు 3.5T వేరియంట్ల మధ్య తేడా ఏమిటి, మరియు కస్టమర్ అవసరాన్ని బట్టి ఏ బాడీ టైప్ సిఫారసు చేస్తారు?", keywords: ["3t","3.5t","gvw","body","deck","container","reefer","fsd","hsd","బాడీ","లోడ్"], correctAnswer: "ప్రో X డీజిల్ 3T (GVW సుమారు 2995 కిలోలు) మరియు 3.5T (GVW సుమారు 3490 కిలోలు) వేరియంట్లలో వస్తుంది; ఇంజన్ 80 HP. బాడీ టైప్‌లు: ఫిక్స్‌డ్ సైడ్ డెక్ (FSD), హై సైడ్ డెక్ (HSD), HD FSD, MS కంటైనర్, అల్యూమినియం కంటైనర్, రీఫర్ మరియు క్యాబిన్ చాసిస్ (CBC), డెక్ పొడవు 9'8\" లేదా 10'8\". కస్టమర్ లోడ్ రకం, బరువు మరియు ఉపయోగం (ఈ-కామర్స్, FMCG, కోల్డ్ చైన్ మొదలైనవి) బట్టి ఎంచుకోవాలి; ఖచ్చితమైన పేలోడ్ బ్రోచర్‌లో చూసి చెప్పాలి." },
+    { text: "ఈ-కామర్స్ పార్సిల్ డెలివరీ, కోల్డ్ చైన్ (పండ్లు, కూరగాయలు) మరియు FMCG రవాణా చేసే కస్టమర్లకు ఐచర్ ప్రో X లో ఏ బాడీ ఎంపికలు సరిపోతాయో వివరించండి.", keywords: ["container","reefer","cold chain","parcel","fmcg","delivery","goods","కంటైనర్","రీఫర్","కోల్డ్ చైన్"], correctAnswer: "పార్సిల్/ఈ-కామర్స్‌కు మూసి ఉన్న కంటైనర్ (MS లేదా అల్యూమినియం), పండ్లు-కూరగాయలు/ఫ్రోజెన్ వస్తువులకు రీఫర్, FMCG కోసం కంటైనర్ లేదా డెక్ బాడీ — వస్తువు రకం, లోడ్ మరియు మార్గాన్ని అడిగి సరైన బాడీ సూచించాలి." }
+  ],
+  sales: [
+    { text: "మొదటిసారి షోరూమ్‌కు వచ్చిన కస్టమర్‌తో మీరు నమ్మకాన్ని ఎలా పెంచుకుంటారు?", keywords: ["greet","listen","needs","trust","smile","understand","honest","నమ్మకం","వినడం"], correctAnswer: "వెచ్చగా పలకరించాలి, మాట్లాడటం కంటే ఎక్కువ వినాలి, మొదట వారి అవసరాలు అర్థం చేసుకోవాలి, ధర మరియు ఆప్షన్ల గురించి నిజాయితీగా ఉండాలి, బలవంతం చేయకూడదు — వారికి సౌకర్యంగా, గౌరవంగా అనిపించేలా చేయాలి." },
+    { text: "పోటీదారు ఐచర్ ప్రో X వాహనం చౌకగా ఉందని ఒక కస్టమర్ చెప్పారు. కేవలం ధరను సరిపోల్చకుండా మీరు ఎలా స్పందిస్తారు?", keywords: ["value","total cost","ownership","mileage","maintenance","resale","quality","service","విలువ","మొత్తం ఖర్చు"], correctAnswer: "ధర తేడాను అంగీకరించాలి, తర్వాత మొత్తం యాజమాన్య ఖర్చుపై దృష్టి మార్చాలి: మంచి మైలేజీ, తక్కువ మెయింటెనెన్స్, మెరుగైన ఆఫ్టర్-సేల్స్ సర్వీస్, రీసేల్ విలువ మరియు బ్రాండ్ నమ్మకం." },
+    { text: "మొదట్లో ఖచ్చితంగా తెలియని విషయంపై ఎవరినైనా ఒప్పించాల్సిన సందర్భం గురించి చెప్పండి. మీరు ఏ విధానం అనుసరించారు?", keywords: ["listen","understand","explain","patience","trust","example","వినడం","ఓపిక"], correctAnswer: "ఆదర్శ సమాధానం: ఓపికగా విన్నాను, వారి ఆందోళనను అర్థం చేసుకున్నాను, స్పష్టమైన ఉదాహరణ లేదా ప్రదర్శనతో వివరించాను, ఒత్తిడి లేకుండా క్రమంగా నమ్మకాన్ని పెంచాను, నిర్ణయం తీసుకోవడానికి వారికి సమయం ఇచ్చాను." },
+    { text: "ఒక కస్టమర్ మూడు మోడళ్లను పోల్చుతూ గందరగోళంగా ఉన్నారు. వారు నిర్ణయం తీసుకోవడానికి మీరు ఎలా సహాయం చేస్తారు?", keywords: ["needs","compare","budget","use case","simplify","recommend","అవసరాలు","బడ్జెట్"], correctAnswer: "వారి ప్రాథమిక వినియోగం (గూడ్స్ రకం), రోజువారీ మార్గం, బడ్జెట్ మరియు ప్రాధాన్యతల గురించి అడగాలి. 2 ఆప్షన్లకు కుదించి, ప్రధాన తేడాలను సరళంగా వివరించి, ఉత్తమమైనదాన్ని నమ్మకంగా సిఫారసు చేయాలి." },
+    { text: "సందర్శించి కానీ వెంటనే బుక్ చేయని కస్టమర్‌ను మీరు ఎలా ఫాలో అప్ చేస్తారు?", keywords: ["follow up","call","remind","relationship","patience","not pushy","ఫాలో అప్","కాల్"], correctAnswer: "24-48 గంటల్లో కాల్ చేయాలి, సందర్శించినందుకు ధన్యవాదాలు చెప్పాలి, ప్రశ్నలు ఉన్నాయా అని అడగాలి, ఏదైనా కొత్త ఆఫర్ లేదా సంబంధిత సమాచారం పంచుకోవాలి, బలవంతం చేయకుండా సహాయకరంగా ఉండాలి." },
+    { text: "ఎప్పుడూ లోన్ తీసుకోని కారణంగా సందేహిస్తున్న కస్టమర్‌తో మీరు ఏమి చెబుతారు?", keywords: ["reassure","explain","emi","simple","support","trust","భరోసా","వివరణ"], correctAnswer: "వారికి భరోసా ఇవ్వాలి: EMI ప్రక్రియను సరళమైన భాషలో దశలవారీగా వివరించాలి, ఎంతమంది కస్టమర్లు విజయవంతంగా వాహనాలను ఫైనాన్స్ చేశారో పంచుకోవాలి, పేపర్‌వర్క్‌లో సహాయం అందించాలి." },
+    { text: "కస్టమర్ ధర గురించి బేరసారాలు చేస్తున్నప్పుడు మీరు ఎలా బ్యాలెన్స్ చేస్తారు?", keywords: ["value","firm","polite","negotiate","విలువ","దృఢంగా"], correctAnswer: "మర్యాదగా, దృఢంగా ఉండాలి; ధరకు బదులు విలువను హైలైట్ చేయాలి; అవసరమైతే పెద్ద డిస్కౌంట్ కాకుండా చిన్న యాడ్-ఆన్‌లు లేదా సర్వీస్ బెనిఫిట్స్ ఆఫర్ చేయవచ్చు." },
+    { text: "నెలవారీ లక్ష్యాన్ని చేరుకోలేకపోతే మీరు మీ వ్యూహాన్ని ఎలా మారుస్తారు?", keywords: ["review","leads","follow up","adjust","సమీక్ష","లీడ్లు"], correctAnswer: "పెండింగ్ లీడ్లను సమీక్షించాలి, ఫాలో-అప్‌లను వేగవంతం చేయాలి, ఏ దశలో కస్టమర్లు వెనక్కి తగ్గుతున్నారో విశ్లేషించాలి, తదనుగుణంగా విధానాన్ని సర్దుబాటు చేయాలి." },
+    { text: "మీరు కొత్త కస్టమర్‌లను ఎలా కనుగొంటారు (లీడ్ జనరేషన్)?", keywords: ["referrals","local","marketing","network","రిఫరల్స్","నెట్‌వర్క్"], correctAnswer: "ప్రస్తుత కస్టమర్ల నుండి రిఫరల్స్ అడగాలి, స్థానిక వ్యాపార సంఘాలతో నెట్‌వర్క్ చేయాలి, స్థానిక మార్కెటింగ్ మరియు వాక్-ఇన్ ట్రాఫిక్‌ను సద్వినియోగం చేసుకోవాలి." },
+    { text: "కస్టమర్ డీల్ దగ్గరగా వచ్చి క్లోజ్ కాకుండా ఆగిపోతే మీరు ఏమి చేస్తారు?", keywords: ["identify objection","address concern","close","ask","సందేహం","క్లోజింగ్"], correctAnswer: "వారి సందేహాన్ని గుర్తించాలి, నేరుగా ఆందోళనను అడగాలి, దానిని పరిష్కరించాలి, తర్వాత మర్యాదగా క్లోజింగ్ ప్రశ్న అడగాలి." }
+  ],
+  situational: [
+    { text: "ఇప్పటికే బుకింగ్ మొత్తం చెల్లించిన కస్టమర్ కుటుంబ అత్యవసర పరిస్థితి వల్ల రద్దు చేయడానికి కాల్ చేశారు. మీరు ఆ కాల్‌ను ఎలా నిర్వహిస్తారు?", keywords: ["empathy","understand","sorry","refund","policy","support","సానుభూతి","రీఫండ్"], correctAnswer: "మొదట సానుభూతి చూపించాలి, వారి పరిస్థితికి క్షమాపణ చెప్పాలి, రద్దు/రీఫండ్ విధానాన్ని స్పష్టంగా వివరించాలి, వీలైతే బుకింగ్‌ను వాయిదా వేయమని ఆఫర్ చేయాలి, వారి అభ్యర్థనను గౌరవంగా ప్రాసెస్ చేయాలి." },
+    { text: "ఒకేసారి ఇద్దరు కస్టమర్లు వచ్చారు, మీరు మాత్రమే అందుబాటులో ఉన్న సేల్స్‌పర్సన్. మీరు ఏమి చేస్తారు?", keywords: ["acknowledge","both","priority","colleague","manage","wait","గుర్తించడం","వేచి ఉండటం"], correctAnswer: "వెంటనే ఇద్దరినీ పలకరించాలి, ఇద్దరినీ గుర్తించాలి, ఒకరిని కొద్దిసేపు వేచి ఉండమని మర్యాదగా అడగాలి, అందుబాటులో ఉంటే సహోద్యోగిని పిలవాలి, ఇద్దరు కస్టమర్లలో ఎవరూ నిర్లక్ష్యం చేయబడ్డారని అనిపించకుండా చూసుకోవాలి." },
+    { text: "బాగా అమ్ముడవని మోడల్‌ను ప్రమోట్ చేయమని మీ మేనేజర్ మిమ్మల్ని అడుగుతున్నారు. కస్టమర్లతో మీరు దీనిని నిజాయితీగా ఎలా చేరుకుంటారు?", keywords: ["honest","features","benefits","fit","needs","not mislead","నిజాయితీ","ఫీచర్లు"], correctAnswer: "మోడల్ యొక్క నిజమైన బలాలను మరియు దానికి సరిపోయే కస్టమర్ ప్రొఫైల్‌ను హైలైట్ చేయాలి. ఎప్పుడూ తప్పుదారి పట్టించకూడదు. వారి అవసరానికి నిజంగా సరిపోయే కస్టమర్లకు నిజాయితీగా ప్రజెంట్ చేయాలి — నిజాయితీ దీర్ఘకాలిక నమ్మకాన్ని నిర్మిస్తుంది." },
+    { text: "డెలివరీ ఆలస్యంపై కస్టమర్ కోపంగా ఉన్నారు. మీరు ఈ పరిస్థితిని ఎలా నిర్వహిస్తారు?", keywords: ["calm","apologize","explain","update","resolve","listen","ప్రశాంతంగా","క్షమాపణ"], correctAnswer: "ప్రశాంతంగా ఉండాలి, వారి అసంతృప్తిని వ్యక్తపరచనివ్వాలి, హృదయపూర్వకంగా క్షమాపణ చెప్పాలి, ఆలస్యానికి కారణాన్ని నిజాయితీగా వివరించాలి, మార్చిన టైమ్‌లైన్ ఇవ్వాలి, పరిష్కారం అయ్యేవరకు ముందుగానే ఫాలో అప్ చేయాలి." },
+    { text: "ఒక కస్టమర్ టెస్ట్ డ్రైవ్ కావాలనుకుంటున్నారు కానీ లైసెన్స్ లేదు. మీరు ఏమి చేస్తారు?", keywords: ["policy","rules","license","alternative","explain","విధానం","లైసెన్స్"], correctAnswer: "కంపెనీ విధానం ప్రకారం టెస్ట్ డ్రైవ్‌కు చెల్లుబాటు అయ్యే లైసెన్స్ అవసరమని మర్యాదగా వివరించాలి. ప్రత్యామ్నాయం ఆఫర్ చేయాలి: లైసెన్స్ ఉన్న సహోద్యోగితో డెమో డ్రైవ్ ఏర్పాటు చేయాలి లేదా వారికి లైసెన్స్ వచ్చాక షెడ్యూల్ చేయాలి." },
+    { text: "మీ సహోద్యోగి ఫైనాన్సింగ్ గురించి కస్టమర్‌కు తప్పుడు సమాచారం ఇస్తున్నట్లు మీరు గమనించారు. మీరు ఏమి చేస్తారు?", keywords: ["correct","colleague","customer","tactful","accurate","సరిదిద్దడం","సహోద్యోగి"], correctAnswer: "వ్యూహాత్మకంగా జోక్యం చేసుకోవాలి — మర్యాదగా అడుగుపెట్టి కస్టమర్‌కు సరైన సమాచారం ఇవ్వాలి. తర్వాత సహోద్యోగితో ఒంటరిగా మాట్లాడాలి, ఇబ్బంది కలగకుండా మరియు భవిష్యత్తులో ఖచ్చితత్వం ఉండేలా చూసుకోవాలి." },
+    { text: "ఒక కస్టమర్ సోషల్ మీడియాలో ప్రతికూల రివ్యూ రాశారు. మీరు ఎలా స్పందిస్తారు?", keywords: ["professional","apologize","offline","resolve","ప్రొఫెషనల్","క్షమాపణ"], correctAnswer: "ప్రొఫెషనల్‌గా, మర్యాదగా బహిరంగంగా స్పందించాలి, అసౌకర్యానికి క్షమాపణ చెప్పాలి, సమస్యను ఆఫ్‌లైన్‌లో పరిష్కరించడానికి సంప్రదించాలి." },
+    { text: "వర్షాకాలంలో టెస్ట్ డ్రైవ్‌కు కస్టమర్ వచ్చారు కానీ రోడ్లు సరిగా లేవు. మీరు ఏమి చేస్తారు?", keywords: ["safety","alternative","reschedule","explain","భద్రత","షెడ్యూల్"], correctAnswer: "భద్రతకు ప్రాధాన్యత ఇవ్వాలి, పరిస్థితిని వివరించాలి, సురక్షితమైన మార్గం లేదా వేరే సమయానికి టెస్ట్ డ్రైవ్ షెడ్యూల్ చేయాలి." },
+    { text: "ఇద్దరు సేల్స్‌పర్సన్‌లు ఒకే కమిషన్ కోసం పోటీ పడుతున్నారు (ఎవరు మొదట కస్టమర్‌ను కలిశారు అనే విషయంపై వివాదం). మీరు దీన్ని ఎలా నిర్వహిస్తారు?", keywords: ["fair","manager","policy","resolve","న్యాయం","మేనేజర్"], correctAnswer: "ప్రశాంతంగా చర్చించాలి, కంపెనీ విధానాన్ని అనుసరించాలి, అవసరమైతే మేనేజర్‌ను జోక్యం చేసుకోమని అడగాలి, న్యాయంగా పరిష్కరించాలి." },
+    { text: "ఒక వాహనంలో డెలివరీకి ముందు చిన్న డ్యామేజ్ కనిపించింది. మీరు కస్టమర్‌కు ఎలా చెబుతారు?", keywords: ["honest","inform","fix","delay","నిజాయితీ","సమాచారం"], correctAnswer: "వెంటనే, నిజాయితీగా కస్టమర్‌కు తెలియజేయాలి, సమస్యను పరిష్కరించే వరకు డెలివరీ ఆలస్యం చేయాలి, పరిస్థితిపై పారదర్శకంగా ఉండాలి." }
+  ],
+  communication: [
+    { text: "వాక్-ఇన్ కస్టమర్‌తో మీరు ఎలా పలకరించి సంభాషణ ప్రారంభిస్తారో వివరించండి.", keywords: ["greet","smile","introduce","help","welcome","పలకరించడం","నవ్వు"], correctAnswer: "లేచి నిలబడాలి, నవ్వాలి, పలకరించాలి ('స్వాగతం! ఈరోజు మీకు ఎలా సహాయం చేయగలను?'), మిమ్మల్ని పరిచయం చేసుకోవాలి, వారిని సౌకర్యంగా ఉంచాలి, వారి అవసరాల గురించి ఓపెన్-ఎండెడ్ ప్రశ్నలు అడగడం ప్రారంభించాలి." },
+    { text: "వాహనం ఎప్పుడూ కలిగి లేని కస్టమర్‌కు చెప్పినట్లుగా, ఐచర్ ప్రో X వాహనం వారికి మంచి పెట్టుబడిగా ఎందుకు ఉంటుందో సరళమైన మాటల్లో వివరించండి.", keywords: ["low cost","investment","income","simple","easy","afford","తక్కువ ఖర్చు","పెట్టుబడి"], correctAnswer: "ఐచర్ ప్రో X వాహనం రోజువారీ ఆదాయాన్ని (గూడ్స్/పాసింజర్ రవాణా) సృష్టించగలదు, తక్కువ నడుపు మరియు మెయింటెనెన్స్ ఖర్చులు కలిగి ఉంటుంది, ఫైనాన్స్ చేయడం సులభం, మరియు సంపాదన ద్వారా త్వరగా తనకు తానే చెల్లించుకుంటుంది." },
+    { text: "సంఖ్యలతో సౌకర్యంగా లేని కస్టమర్‌కు లోన్ EMI షెడ్యూల్‌ను మీరు ఎలా వివరిస్తారు?", keywords: ["simple","explain","monthly","easy","example","break down","సరళం","వివరణ"], correctAnswer: "సరళమైన ఉదాహరణ వాడాలి: 'మీరు ప్రతి నెలా చిన్న స్థిర మొత్తాన్ని చెల్లిస్తారు — మొబైల్ రీఛార్జ్ లాగా — వాహనం పూర్తిగా మీదవుతుంది వరకు. ఆశ్చర్యాలు లేవు, ప్రతి నెలా అదే మొత్తం.'" },
+    { text: "మీకు అంతగా రాని స్థానిక భాష మాత్రమే మాట్లాడే వ్యక్తి నుండి వచ్చిన ఫోన్ ఎంక్వైరీని మీరు ఎలా నిర్వహిస్తారు?", keywords: ["translator","colleague","simple words","patience","gesture","అనువాదకుడు","ఓపిక"], correctAnswer: "సరళమైన మాటలు వాడాలి, నెమ్మదిగా మాట్లాడాలి, వారి భాష మాట్లాడే సహోద్యోగిని భాగస్వామిని చేయాలి, లేదా వ్యక్తిగత సందర్శన ఏర్పాటు చేయాలి. కస్టమర్‌ను ఎప్పుడూ తిరస్కరించకూడదు — వారికి స్వాగతంగా అనిపించేలా చేయాలి." },
+    { text: "మీకు సమాధానం తెలియని ప్రశ్నను ఒక కస్టమర్ అడుగుతున్నారు. మీరు ఏమి చెబుతారు?", keywords: ["honest","check","find out","get back","don't know","నిజాయితీ","తనిఖీ"], correctAnswer: "నిజాయితీగా ఉండాలి: 'మంచి ప్రశ్న — నేను తనిఖీ చేసి సరైన సమాధానంతో మీకు తిరిగి చెబుతాను.' ఎప్పుడూ ఊహించకూడదు లేదా తప్పుదారి పట్టించకూడదు. ఖచ్చితమైన సమాచారంతో వెంటనే ఫాలో అప్ చేయాలి." },
+    { text: "కస్టమర్‌కు నిర్ణయం తీసుకోవడానికి మరింత సమయం కావాలంటే మీరు సేల్స్ సంభాషణను మర్యాదగా ఎలా ముగిస్తారు?", keywords: ["polite","follow up","no pressure","contact","thank","మర్యాద","ధన్యవాదాలు"], correctAnswer: "వారి సమయానికి ధన్యవాదాలు చెప్పాలి, ముఖ్యాంశాలను సంక్షిప్తీకరించాలి, మీ సంప్రదింపు వివరాలు ఇవ్వాలి, మరియు చెప్పాలి: 'మీ సమయం తీసుకోండి — మీరు సిద్ధంగా ఉన్నప్పుడు నేను ఇక్కడ ఉన్నాను. ఒకటి రెండు రోజుల్లో ఫాలో అప్ చేస్తాను.'" },
+    { text: "ఫోన్‌లో ధర గురించి మాత్రమే అడిగే కస్టమర్‌తో మీరు సంభాషణను ఎలా విస్తరిస్తారు?", keywords: ["needs","engage","questions","beyond price","అవసరాలు","సంభాషణ"], correctAnswer: "ధర చెప్పే ముందు వారి అవసరాల గురించి అడగాలి, తద్వారా సరైన మోడల్‌ను సిఫారసు చేయవచ్చు మరియు వారిని షోరూమ్‌కు ఆహ్వానించవచ్చు." },
+    { text: "మీరు ఇచ్చిన సమాచారం తప్పు అని కస్టమర్ తర్వాత తెలుసుకుంటే మీరు ఎలా వ్యవహరిస్తారు?", keywords: ["apologize","correct","honest","proactive","క్షమాపణ","సరిదిద్దడం"], correctAnswer: "వెంటనే తప్పును అంగీకరించాలి, క్షమాపణ చెప్పాలి, సరైన సమాచారం ఇవ్వాలి, నమ్మకాన్ని పునరుద్ధరించడానికి ప్రొయాక్టివ్‌గా ఉండాలి." },
+    { text: "వాట్సాప్ ద్వారా విచారణ వచ్చినప్పుడు మీరు ఎలా స్పందిస్తారు?", keywords: ["quick","professional","details","follow up","వేగం","ప్రొఫెషనల్"], correctAnswer: "త్వరగా, మర్యాదగా స్పందించాలి, పరిచయం చేసుకోవాలి, వారి అవసరాలు అడగాలి, తగిన వివరాలు లేదా కాల్‌బ్యాక్ ఆఫర్ చేయాలి." },
+    { text: "కుటుంబం మొత్తంగా షోరూమ్‌కు వచ్చినప్పుడు (భర్త, భార్య, తల్లిదండ్రులు) మీరు సంభాషణను ఎలా నిర్వహిస్తారు?", keywords: ["include everyone","listen","address","respect","గౌరవం","వినడం"], correctAnswer: "అందరినీ చేర్చుకోవాలి, ప్రతి ఒక్కరి అభిప్రాయాలను వినాలి, నిర్ణయం తీసుకునే వ్యక్తిని గుర్తించి తగినట్లుగా సంభాషణను నిర్వహించాలి, అందరినీ గౌరవంగా చూడాలి." }
+  ]
+};
+
+function scoreAnswerLocally(question, answerText) {
+  const text = (answerText || "").trim();
+  const words = text.split(/\s+/).filter(Boolean);
+
+  if (words.length === 0) {
+    return { score: 0, feedback: "సమాధానం ఇవ్వలేదు." };
+  }
+
+  const lower = text.toLowerCase();
+
+  // Check correctness FIRST — a short but exactly-correct answer (e.g. "256000")
+  // should never be penalized just for being short.
+  if (question.answerCheck) {
+    const correct = question.answerCheck(text);
+    if (correct) {
+      return { score: 90, feedback: "సరైన తార్కికం/సమాధానం." };
+    }
+    // Fall through to keyword check for partial credit even if exact check fails
+  }
+
+  if (words.length < 4) {
+    // Still give partial credit if the short answer is clearly relevant
+    // (e.g. mentions the right concept tersely), instead of an automatic floor score.
+    const keywords = question.keywords || [];
+    const hasRelevantTerm = keywords.some(k => lower.includes(k.toLowerCase().split(' ')[0].slice(0,4)));
+    return hasRelevantTerm
+      ? { score: 35, feedback: "సమాధానం అంశానికి సంబంధించినదే కానీ పూర్తిగా అంచనా వేయడానికి చాలా క్లుప్తంగా ఉంది." }
+      : { score: 15, feedback: "సరిగ్గా అంచనా వేయడానికి సమాధానం చాలా చిన్నది." };
+  }
+
+  const keywords = question.keywords || [];
+  let matched = 0;
+  keywords.forEach(k => {
+    const kw = k.toLowerCase();
+    if (kw.includes(' ')) {
+      // multi-word phrase: count it as matched if most of its words appear anywhere (typo-tolerant via stem)
+      const parts = kw.split(' ').filter(p => p.length > 2);
+      const hits = parts.filter(p => lower.includes(p.slice(0, Math.max(4, p.length - 2)))).length;
+      if (parts.length === 0 || hits / parts.length >= 0.5) matched++;
+    } else {
+      // single word: match by stem (first 4-5 chars) so typos/variants still count
+      const stem = kw.slice(0, Math.min(kw.length, Math.max(4, kw.length - 2)));
+      if (lower.includes(stem)) matched++;
+    }
+  });
+  const coverage = keywords.length > 0 ? matched / keywords.length : 0.5;
+
+  // Base score from keyword coverage, scaled into a realistic 30-95 band
+  let score = Math.round(30 + coverage * 65);
+
+  // Small bonus for a reasonably developed answer (shows effort/depth)
+  if (words.length >= 25) score = Math.min(95, score + 5);
+
+  // Logic question that had a checkable answer but failed it — cap lower
+  if (question.answerCheck && !question.answerCheck(text)) {
+    score = Math.min(score, 55);
+  }
+
+  score = Math.max(10, Math.min(95, score));
+
+  let feedback;
+  if (score >= 75) feedback = "ముఖ్యాంశాలను కవర్ చేసే బలమైన, సంబంధిత సమాధానం.";
+  else if (score >= 55) feedback = "సహేతుకమైన సమాధానం; మరింత నిర్దిష్ట వివరాలు చేర్చవచ్చు.";
+  else feedback = "సమాధానం అంశానికి సంబంధించినదే కానీ ఇక్కడ ఆశించిన అనేక ముఖ్యాంశాలను కోల్పోయింది.";
+
+  return { score, feedback };
+}
+
+function pickNextQuestion() {
+  const usedTexts = state.qaLog.map(qa => qa.question);
+  const usedCategories = state.qaLog.map(qa => qa.category);
+  const categories = Object.keys(QUESTION_BANK);
+
+  // Spread categories evenly: prefer the category used fewest times so far
+  const counts = categories.map(cat => usedCategories.filter(c => c === cat).length);
+  const minCount = Math.min(...counts);
+  const eligibleCats = categories.filter((cat, i) => counts[i] === minCount);
+  const category = eligibleCats[Math.floor(Math.random() * eligibleCats.length)];
+
+  const pool = QUESTION_BANK[category].filter(q => !usedTexts.includes(q.text));
+  const chosenPool = pool.length > 0 ? pool : QUESTION_BANK[category];
+
+  // Adaptive difficulty isn't a separate field here, but we vary which question
+  // within the category based on running average — pick from the back half of the
+  // pool (treated as slightly tougher) if they're doing well, front half if struggling.
+  const avgSoFar = state.qaLog.length > 0
+    ? state.qaLog.reduce((s,qa)=>s+qa.score,0) / state.qaLog.length
+    : 50;
+  const sorted = chosenPool;
+  const half = Math.ceil(sorted.length / 2);
+  const slice = avgSoFar >= 60 ? sorted.slice(half === sorted.length ? 0 : sorted.length - half) : sorted.slice(0, half);
+  const finalChoices = slice.length > 0 ? slice : sorted;
+  const q = finalChoices[Math.floor(Math.random() * finalChoices.length)];
+
+  return { question: q.text, category, _bankRef: q };
+}
+
+async function fetchNextQuestion() {
+  state.loadingNext = true;
+  render();
+  // tiny delay so the UI transition doesn't feel instantaneous/jarring
+  await new Promise(r => setTimeout(r, 250));
+  state.currentQuestion = pickNextQuestion();
+  state.currentMeta = { start: Date.now(), pastes: 0, pastedChars: 0, blurs: 0, hiddenMs: 0, hiddenAt: null, keys: 0 };
+  state.loadingNext = false;
+  render();
+}
+
+async function gradeAnswerAndAdvance(question, answerText) {
+  const bankQ = question._bankRef || (QUESTION_BANK[question.category] || []).find(q => q.text === question.question);
+  const { score, feedback } = scoreAnswerLocally(bankQ || { keywords: [] }, answerText);
+  const mm = state.currentMeta || {};
+  if (mm.hiddenAt) { mm.hiddenMs = (mm.hiddenMs || 0) + (Date.now() - mm.hiddenAt); mm.hiddenAt = null; }
+  state.qaLog.push({
+    question: question.question,
+    category: question.category,
+    answer: answerText,
+    secs: mm.start ? Math.round((Date.now() - mm.start) / 1000) : null,
+    pastes: mm.pastes || 0,
+    pastedChars: mm.pastedChars || 0,
+    blurs: mm.blurs || 0,
+    hiddenSecs: Math.round((mm.hiddenMs || 0) / 1000),
+    keys: mm.keys || 0,
+    chars: answerText.length,
+    score,
+    feedback,
+    correctAnswer: (bankQ && bankQ.correctAnswer) ? bankQ.correctAnswer : ""
+  });
+
+  if (state.qaLog.length >= TOTAL_QUESTIONS) {
+    await finalizeInterview();
+  } else {
+    state.currentQuestion = null;
+    await fetchNextQuestion();
+  }
+}
+
+function buildLocalSummary(overallScore, categoryScores, verdict) {
+  const sorted = Object.entries(categoryScores).sort((a,b)=>b[1]-a[1]);
+  const strongest = sorted[0];
+  const weakest = sorted[sorted.length-1];
+  const strongLabel = strongest ? (CATEGORY_META[strongest[0]]||{}).label || strongest[0] : "";
+  const weakLabel = weakest ? (CATEGORY_META[weakest[0]]||{}).label || weakest[0] : "";
+  if (verdict === "Qualify") {
+    return `మొత్తం స్కోర్ ${overallScore}/100 — అర్హత ప్రమాణాన్ని చేరుకుంది. ${strongLabel} (${strongest[1]}%)లో బలంగా ఉన్నారు, ${weakLabel} (${weakest[1]}%)లో కొంచెం బలహీనంగా ఉన్నారు. తదుపరి రౌండ్‌కు కొనసాగించమని సిఫారసు, ${weakLabel}పై దృష్టి పెట్టాలి.`;
+  }
+  return `మొత్తం స్కోర్ ${overallScore}/100 — ${QUALIFY_THRESHOLD}% అర్హత ప్రమాణం కంటే తక్కువ. బలహీనమైన అంశం ${weakLabel} (${weakest[1]}%); ఉత్తమ అంశం ${strongLabel} (${strongest[1]}%). తుది నిర్ణయానికి ముందు మాన్యువల్ సమీక్ష సిఫారసు చేయబడింది.`;
+}
+
+function normalizeForCompare(text) {
+  return (text || "").toLowerCase().replace(/[^\w\s]/g, "").split(/\s+/).filter(w => w.length > 2);
+}
+
+function similarity(a, b) {
+  const wa = new Set(normalizeForCompare(a));
+  const wb = new Set(normalizeForCompare(b));
+  if (wa.size === 0 || wb.size === 0) return 0;
+  let overlap = 0;
+  wa.forEach(w => { if (wb.has(w)) overlap++; });
+  return overlap / Math.max(wa.size, wb.size);
+}
+
+async function detectCopying(qaLog, ownName) {
+  try {
+    const res = await fetch(SHEETS_URL + "?_=" + Date.now());
+    if (!res.ok) return "";
+    const rows = await res.json();
+    const matches = [];
+    qaLog.forEach(qa => {
+      rows.forEach(r => {
+        if (String(r["Name"]) === ownName) return; // don't compare against self
+        const otherQa = parseQaLog(r["Full Q&A (JSON)"]);
+        otherQa.forEach(oq => {
+          if (oq.question !== qa.question) return;
+          const sim = similarity(qa.answer, oq.answer);
+          if (sim >= 0.75 && qa.answer.trim().length > 15) {
+            matches.push(`"${qa.question.slice(0,40)}..." matches ${r["Name"]} (${Math.round(sim*100)}% similar)`);
+          }
+        });
+      });
+    });
+    return matches.length > 0 ? matches.join(" | ") : "";
+  } catch (e) {
+    console.error("Copy detection check failed", e);
+    return "";
+  }
+}
+
+// NOTE: This is a heuristic, best-effort check — it CANNOT verify whether an
+// answer was actually copied from the internet (that would require a live web
+// search/AI call, which doesn't work once this app is hosted outside Claude.ai).
+// It only flags stylistic red flags worth a manual look, not proof of copying.
+const TEXTBOOK_PHRASES = [
+  "in conclusion", "is defined as", "refers to the process of", "plays a vital role",
+  "various factors", "it is important to note", "in today's world", "in summary",
+  "plays a crucial role", "in this regard", "with the advent of", "it can be concluded",
+  "furthermore,", "moreover,", "in essence,"
+];
+
+function detectStyleAnomalies(qaLog) {
+  const flags = [];
+  const wordCounts = qaLog.map(qa => (qa.answer || "").trim().split(/\s+/).filter(Boolean).length);
+  const avgWords = wordCounts.reduce((a,b)=>a+b,0) / (wordCounts.length || 1);
+
+  qaLog.forEach((qa, i) => {
+    const text = qa.answer || "";
+    const lower = text.toLowerCase();
+    const wc = wordCounts[i];
+    const reasons = [];
+
+    // Textbook/generic phrasing unlikely in spoken, off-the-cuff sales answers
+    const foundPhrase = TEXTBOOK_PHRASES.find(p => lower.includes(p));
+    if (foundPhrase) reasons.push(`generic textbook phrasing ("${foundPhrase}")`);
+
+    // Punctuation typically left behind by copy-pasting (smart quotes, em-dashes)
+    // when the rest of the candidate's answers don't use this style.
+    const hasSmartPunct = /[“”‘’—]/.test(text);
+    const otherAnswersUseSmartPunct = qaLog.some((other,j) => j !== i && /[“”‘’—]/.test(other.answer || ""));
+    if (hasSmartPunct && !otherAnswersUseSmartPunct) reasons.push("unusual punctuation style vs. their other answers");
+
+    // Answer dramatically longer/more polished than their typical answer length
+    if (avgWords > 0 && wc > avgWords * 2.2 && wc > 30) reasons.push("unusually long/polished compared to their other answers");
+
+    if (reasons.length > 0) {
+      flags.push(`"${qa.question.slice(0,40)}..." — ${reasons.join(", ")}`);
+    }
+  });
+
+  return flags.length > 0 ? flags.join(" | ") : "";
+}
+
+async function finalizeInterview() {
+  state.screen = "submitting";
+  render();
+
+  // Compute category scores
+  const categoryScores = {};
+  const categoryCounts = {};
+  state.qaLog.forEach(qa => {
+    categoryScores[qa.category] = (categoryScores[qa.category] || 0) + qa.score;
+    categoryCounts[qa.category] = (categoryCounts[qa.category] || 0) + 1;
+  });
+  Object.keys(categoryScores).forEach(cat => {
+    categoryScores[cat] = Math.round(categoryScores[cat] / categoryCounts[cat]);
+  });
+
+  const overallScore = Math.round(
+    state.qaLog.reduce((sum, qa) => sum + qa.score, 0) / state.qaLog.length
+  );
+  const verdict = overallScore >= QUALIFY_THRESHOLD ? "Qualify" : "Disqualify";
+  const summary = buildLocalSummary(overallScore, categoryScores, verdict);
+
+  state.finalResult = { overallScore, categoryScores, verdict, summary };
+
+  const copyFlag = await detectCopying(state.qaLog, state.candidate.name);
+  const styleFlag = detectStyleAnomalies(state.qaLog);
+
+  const candidateRecord = {
+    id: state.candidate.id,
+    name: state.candidate.name,
+    phone: state.candidate.phone,
+    role: state.candidate.role,
+    photo: state.candidate.photo,
+    location: state.candidate.location || "",
+    submittedAt: state.candidate.submittedAt,
+    qaLog: state.qaLog,
+    finalResult: state.finalResult,
+    aiFailureCount: state.aiFailureCount,
+    copyFlag,
+    styleFlag
+  };
+
+  let saveSucceeded = false;
+  let saveErrorDetail = "";
+
+  try {
+    await saveCandidateToSheet(candidateRecord);
+    saveSucceeded = true;
+  } catch (err) {
+    console.error("Sheet save failed", err);
+    saveErrorDetail = (err && err.message) ? err.message : "షీట్‌కు సేవ్ చేయడంలో తెలియని లోపం.";
+  }
+
+  state.saveSucceeded = saveSucceeded;
+  state.saveErrorDetail = saveErrorDetail;
+
+  state.screen = "done";
+  render();
+}
+
+/* ---------------- INTEGRITY (AI / Google / copy) SIGNALS ---------------- */
+function setupIntegrityTracking() {
+  const cur = () => (state.screen === "interview" && state.currentQuestion && state.currentMeta) ? state.currentMeta : null;
+  const hide = () => { const m = cur(); if (m && !m.hiddenAt) { m.hiddenAt = Date.now(); m.blurs++; } };
+  const show = () => { const m = cur(); if (m && m.hiddenAt) { m.hiddenMs += Date.now() - m.hiddenAt; m.hiddenAt = null; } };
+  document.addEventListener('visibilitychange', () => { document.hidden ? hide() : show(); });
+  window.addEventListener('blur', hide);
+  window.addEventListener('focus', show);
+}
+
+function analyzeIntegrity(qaLog, copyFlag) {
+  const log = qaLog || [];
+  if (!log.some(q => q.secs != null)) return { level: "unknown", reasons: [], pastes: 0, leaves: 0, totalSecs: 0 };
+  let strong = 0, left = 0, fast = 0, pastes = 0, leaves = 0, totalSecs = 0;
+  const reasons = [];
+  log.forEach((q, i) => {
+    const n = i + 1;
+    const chars = q.chars || (q.answer || "").length;
+    totalSecs += q.secs || 0; pastes += q.pastes || 0; leaves += q.blurs || 0;
+    if ((q.pastedChars || 0) >= 20) { strong++; reasons.push("ప్రశ్న " + n + ": బయటి నుండి కాపీ చేసిన టెక్స్ట్ పేస్ట్ చేశారు (" + q.pastedChars + " అక్షరాలు)"); }
+    else if ((q.pastes || 0) > 0) { reasons.push("ప్రశ్న " + n + ": పేస్ట్ చేశారు (చిన్న టెక్స్ట్)"); }
+    if ((q.blurs || 0) >= 1 && (q.hiddenSecs || 0) >= 3) { left++; reasons.push("ప్రశ్న " + n + ": సమాధానం రాస్తూ వేరే ట్యాబ్/యాప్‌కు వెళ్లారు (" + q.blurs + " సార్లు, మొత్తం " + q.hiddenSecs + " సెకన్లు)"); }
+    if (chars > 40 && q.secs > 0 && chars / q.secs > 12) { fast++; reasons.push("ప్రశ్న " + n + ": " + chars + " అక్షరాలు కేవలం " + q.secs + " సెకన్లలో — టైప్ చేయడానికి అసాధారణ వేగం"); }
+  });
+  if (copyFlag) reasons.push("ఇతర అభ్యర్థి సమాధానాలతో దాదాపు సమానంగా ఉన్నాయి");
+  let level = "low";
+  if (strong >= 1 || left >= 1 || fast >= 2) level = "medium";
+  if (strong >= 2 || (strong >= 1 && left >= 1) || left >= 3 || copyFlag) level = "high";
+  return { level, reasons, pastes, leaves, totalSecs };
+}
+
+const INTEGRITY_UI = {
+  high:    { label: "🔴 అధిక అనుమానం — AI / Google / కాపీ వాడి ఉండే అవకాశం ఎక్కువ", short: "🔴 అనుమానం ఎక్కువ", bg: "#f6e8e4", fg: "#a3342b" },
+  medium:  { label: "🟠 కొంత అనుమానం — మాన్యువల్‌గా సమీక్షించండి", short: "🟠 కొంత అనుమానం", bg: "#f5e9d8", fg: "#8a5a14" },
+  low:     { label: "🟢 అనుమానాస్పద సంకేతాలు కనిపించలేదు", short: "🟢 స్వంతంగా రాశారు", bg: "#e9f0e4", fg: "#3c6b3f" },
+  unknown: { label: "⚪ ట్రాకింగ్ డేటా లేదు (పాత ఇంటర్వ్యూ)", short: "⚪ డేటా లేదు", bg: "#eee9da", fg: "#5b5849" }
+};
+
+function integrityPill(c) {
+  const r = analyzeIntegrity(c.qaLog, c.copyFlag);
+  const u = INTEGRITY_UI[r.level];
+  return '<span class="pill" style="background:' + u.bg + ';color:' + u.fg + ';margin-left:6px;">' + u.short + '</span>';
+}
+
+function integrityHtml(c) {
+  const r = analyzeIntegrity(c.qaLog, c.copyFlag);
+  const u = INTEGRITY_UI[r.level];
+  const list = r.reasons.length ? '<ul>' + r.reasons.map(x => '<li>' + escapeHtml(x) + '</li>').join('') + '</ul>' : '';
+  const stats = r.level === "unknown" ? '' : '<div>మొత్తం సమయం: ' + Math.round(r.totalSecs / 60 * 10) / 10 + ' నిమిషాలు · పేస్ట్ చేసిన సార్లు: ' + r.pastes + ' · పేజీ వదిలి వెళ్లిన సార్లు: ' + r.leaves + '</div>';
+  return '<div class="integrity-box" style="background:' + u.bg + ';color:' + u.fg + ';"><h4>' + u.label + '</h4>' + stats + list +
+    '<p class="note">గమనిక: ఇది రుజువు కాదు, కేవలం సూచన. అభ్యర్థి తన రెండో ఫోన్‌లో Google/AI చూసి చేతితో టైప్ చేస్తే ఈ యాప్ కనిపెట్టలేదు. అందుకే తుది నిర్ణయానికి ముందు ఫోన్/నేరుగా కలిసి 2-3 ప్రశ్నలు మళ్ళీ అడగండి.</p></div>';
+}
+
+function qaMetaHtml(qa) {
+  if (qa.secs == null) return '';
+  let cls = 'qa-meta';
+  if ((qa.pastedChars || 0) >= 20) cls += ' bad';
+  else if ((qa.pastes || 0) > 0 || ((qa.blurs || 0) >= 1 && (qa.hiddenSecs || 0) >= 3)) cls += ' warn';
+  return '<div class="' + cls + '">⏱ ' + qa.secs + ' సె · ✍️ ' + (qa.chars || 0) + ' అక్షరాలు · 📋 పేస్ట్: ' + (qa.pastes || 0) + ((qa.pastedChars || 0) ? ' (' + qa.pastedChars + ' అక్షరాలు)' : '') + ' · 🔀 పేజీ వదిలారు: ' + (qa.blurs || 0) + ' సార్లు (' + (qa.hiddenSecs || 0) + ' సె)</div>';
+}
+
+/* ---------------- OWNER DATA LOADING ---------------- */
+async function loadAllCandidates() {
+  try {
+    const res = await fetch(SHEETS_URL + "?_=" + Date.now());
+    if (!res.ok) throw new Error("షీట్ చేరుకోలేకపోయాం (HTTP " + res.status + ").");
+    const rows = await res.json();
+    state.allCandidates = rows.map(r => ({
+      id: r["Name"] + "_" + r["Phone"] + "_" + r["Submitted at"],
+      name: r["Name"],
+      phone: r["Phone"],
+      role: r["Applying for"],
+      submittedAt: r["Submitted at"],
+      qaLog: parseQaLog(r["Full Q&A (JSON)"]),
+      aiFailureCount: 0,
+      photo: r["Photo"] || "",
+      copyFlag: r["Copy flag"] || "",
+      styleFlag: r["Style flag"] || "",
+      location: r["Location"] || "",
+      finalResult: {
+        overallScore: r["Overall score"],
+        verdict: r["Verdict"],
+        summary: r["Summary"],
+        categoryScores: {
+          logic: r["Logical reasoning"],
+          product: r["Product knowledge"],
+          sales: r["Sales aptitude"],
+          situational: r["Situational judgement"],
+          communication: r["Communication"]
+        }
+      }
+    })).reverse();
+    state.loadError = "";
+  } catch (err) {
+    console.error("Failed to load candidates", err);
+    state.allCandidates = [];
+    state.loadError = (err && err.message) ? err.message : "షీట్ నుండి ఫలితాలు లోడ్ చేయలేకపోయాం.";
+  }
+  render();
+}
+
+/* ---------------- EXCEL EXPORT ---------------- */
+function exportToExcel() {
+  const rows = state.allCandidates.map(c => {
+    const fr = c.finalResult || {};
+    const cat = fr.categoryScores || {};
+    const row = {
+      "Name": c.name,
+      "Phone": c.phone,
+      "Applying for": c.role,
+      "Submitted at": c.submittedAt ? new Date(c.submittedAt).toLocaleString() : "",
+      "Overall score": fr.overallScore != null ? fr.overallScore : "",
+      "Verdict": fr.verdict || "",
+      "Logical reasoning": cat.logic != null ? cat.logic : "",
+      "Product knowledge": cat.product != null ? cat.product : "",
+      "Sales aptitude": cat.sales != null ? cat.sales : "",
+      "Situational judgement": cat.situational != null ? cat.situational : "",
+      "Communication": cat.communication != null ? cat.communication : "",
+      "Summary": fr.summary || "",
+      "Integrity check": (INTEGRITY_UI[analyzeIntegrity(c.qaLog, c.copyFlag).level] || {}).short || "",
+      "Paste count": analyzeIntegrity(c.qaLog, c.copyFlag).pastes,
+      "Left page (count)": analyzeIntegrity(c.qaLog, c.copyFlag).leaves,
+      "Total time (min)": Math.round(analyzeIntegrity(c.qaLog, c.copyFlag).totalSecs / 6) / 10
+    };
+    (c.qaLog || []).forEach((qa, idx) => {
+      row[`Q${idx+1} (${qa.category})`] = qa.question;
+      row[`A${idx+1}`] = qa.answer;
+      row[`Score${idx+1}`] = qa.score;
+    });
+    return row;
+  });
+
+  const ws = XLSX.utils.json_to_sheet(rows);
+  const wb = XLSX.utils.book_new();
+  XLSX.utils.book_append_sheet(wb, ws, "Candidates");
+  const filename = `Ramcor_EicherProX_Sales_Interviews_${new Date().toISOString().slice(0,10)}.xlsx`;
+  XLSX.writeFile(wb, filename);
+}
+
+/* ---------------- UTIL ---------------- */
+function escapeHtml(str) {
+  if (str == null) return "";
+  return String(str)
+    .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
+    .replace(/"/g,'&quot;').replace(/'/g,'&#039;');
+}
+
+setupIntegrityTracking();
+render();
+</script>
+</body>
+</html>
